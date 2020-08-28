@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - OwnTag_SafeZone
+  - OwnTag_Safezone
+  - OwnTag_RightPanel
+  - OwnTag_LeftPanel
   layers:
   - Default
   - TransparentFX
