@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPressed: 0
+  playerController: {fileID: 1341011387}
 --- !u!1 &516824481
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1341011386}
+  - component: {fileID: 1341011387}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -687,12 +689,26 @@ Transform:
   m_GameObject: {fileID: 1341011385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.4, y: -3.12, z: -1.5756836}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.58836, y: 0.58836, z: 0.58836}
   m_Children:
   - {fileID: 1318410969}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1341011387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341011385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab0a4331255be54aa07794388317bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  padding: 1
 --- !u!1 &1663232947
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: d69bfebb11c00fc4c8349d534cd9ffec, type: 3}
+  m_Texture: {fileID: 2800000, guid: e3b6ad066d73cc54b85048ace2bb5d4a, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -970,3 +986,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPressed: 0
+  playerController: {fileID: 1341011387}
