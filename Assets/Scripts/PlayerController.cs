@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
     public float speed = 10; //Se pone public para que aparezca fuera, en el Unity y sea más cómodo.
     public float padding = 1f; //Esto es por que hay que añadir un pequeño margen a cada extremo, por que si no al hacer el CLAMP, si que deja salir la mitad del objeto.
 
+    private Animator animator;
+
     private enum Direccion {
         quieto,
         derecha,
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         direccionActual = Direccion.quieto;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -65,19 +68,28 @@ public class PlayerController : MonoBehaviour {
 
     //Este método debe ser llamado desde fuera, y es el que activa el movimiento.
     public void activarMovimientoDerecha() {
-        Debug.Log("Se activa movimiento derecha");
+        Debug.Log("Se activa movimiento derecha (aa01)");
         direccionActual = Direccion.derecha;
+        animator.SetTrigger("MoverseDerecha");
+        animator.ResetTrigger("MoverseArriba");
+        animator.ResetTrigger("MoverseIzquierda");
     }
 
     //Este método debe ser llamado desde fuera, y es el que activa el movimiento.
     public void activarMovimientoIzquierda() {
         Debug.Log("Se activa movimiento izquierda");
         direccionActual = Direccion.izquierda;
+        animator.SetTrigger("MoverseIzquierda");
+        animator.ResetTrigger("MoverseArriba");
+        animator.ResetTrigger("MoverseDerecha");
     }
 
     //Este método debe ser llamado desde fuera, y es el que detiene el movimiento.
     public void desactivarMovimiento() {
         Debug.Log("Se desactiva movimiento.");
         direccionActual = Direccion.quieto;
+        animator.SetTrigger("MoverseArriba");
+        animator.ResetTrigger("MoverseDerecha");
+        animator.ResetTrigger("MoverseIzquierda");
     }
 }
