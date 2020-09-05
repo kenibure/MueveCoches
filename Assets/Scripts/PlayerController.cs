@@ -51,8 +51,8 @@ public class PlayerController : MonoBehaviour {
                 //Debug.Log("Se hace movimiento a la derecha");
                 this.transform.position += new Vector3(Time.deltaTime * speed, 0, 0);
                 // Clamping, para que no se salga de los margenes. Clamp recibe 3 números, si el primero no está entre los límites de después, lo pone al límite
-                float newX = Mathf.Clamp(this.transform.position.x, -10 + padding, 10 - padding); //Esto no es por píxeles, es por unidades. Fuera en Unity, en la cámara, el campo "size", son las unidades a cada lado, es decir si es "10", sería 20x20 (se multiplica el size por 2)
-                this.transform.position = new Vector3(newX, this.transform.position.y, this.transform.position.z);
+                /*float newX = Mathf.Clamp(this.transform.position.x, -10 + padding, 10 - padding); //Esto no es por píxeles, es por unidades. Fuera en Unity, en la cámara, el campo "size", son las unidades a cada lado, es decir si es "10", sería 20x20 (se multiplica el size por 2)
+                this.transform.position = new Vector3(newX, this.transform.position.y, this.transform.position.z);*/
                 break;
             case Direccion.izquierda:
                 //Debug.Log("Se hace movimiento a la izquierda");
