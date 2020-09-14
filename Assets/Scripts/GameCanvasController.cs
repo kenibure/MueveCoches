@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameCanvasController : MonoBehaviour {
 
-    private float parallaxSpeed = 0.1f;
+    private float parallaxSpeed = 0.2f;
     public RawImage background; //Desde Unity hay que asignarle cual es.
 
     // Start is called before the first frame update

@@ -7,6 +7,7 @@ TagManager:
   - OwnTag_Safezone
   - OwnTag_RightPanel
   - OwnTag_LeftPanel
+  - OwnTag_enemyDestroyer
   layers:
   - Default
   - TransparentFX
