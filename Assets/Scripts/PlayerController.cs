@@ -6,8 +6,11 @@ public class PlayerController : MonoBehaviour {
 
     public float speed = 10; //Se pone public para que aparezca fuera, en el Unity y sea más cómodo.
     public float padding = 1f; //Esto es por que hay que añadir un pequeño margen a cada extremo, por que si no al hacer el CLAMP, si que deja salir la mitad del objeto.
+    public float defaultYposition = -2f; //Posición Y por defecto. Es donde el player va a tender a ir.
 
     private Animator animator;
+
+    private Rigidbody2D rigidBody2D;
 
     private enum Direccion {
         quieto,
@@ -22,27 +25,18 @@ public class PlayerController : MonoBehaviour {
     {
         direccionActual = Direccion.quieto;
         animator = GetComponent<Animator>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
+
+        asignarEjeYPorDefecto();
     }
 
     // Update is called once per frame
     void Update() {
 
-        /*if (direccionActual == Direccion.derecha) {
-            //Debug.Log("Debe moverse a la derecha.");
-            moverCoche(Direccion.derecha);
-        }
-
-        if (direccionActual == Direccion.izquierda) {
-            //Debug.Log("Debe moverse a la derecha.");
-            moverCoche(Direccion.izquierda);
-        }
-
-        if (direccionActual == Direccion.quieto) {
-            //Debug.Log("Debe estar quieto");
-        }*/
-
 
         moverCoche(direccionActual);
+
+        movimientoPorDefecto();
     }
 
     private void moverCoche(Direccion direccion) {
@@ -91,5 +85,38 @@ public class PlayerController : MonoBehaviour {
         animator.SetTrigger("MoverseArriba");
         animator.ResetTrigger("MoverseDerecha");
         animator.ResetTrigger("MoverseIzquierda");
+    }
+
+    //En caso de que no esté en la posición del eje Y, por defecto se mueve hacia allá.
+    private void movimientoPorDefecto() {
+        rigidBody2D.velocity = Vector2.zero;
+
+        float factorVelocidad = Time.deltaTime * speed / 10;
+
+        if (this.transform.position.y > defaultYposition) {
+            if(this.transform.position.y - factorVelocidad < defaultYposition) {
+                asignarEjeYPorDefecto();
+            } else {
+                moverEjeY(-factorVelocidad);
+            }
+        }
+
+        if (this.transform.position.y < defaultYposition) {
+            if (this.transform.position.y + factorVelocidad > defaultYposition) {
+                asignarEjeYPorDefecto();
+            } else {
+                moverEjeY(factorVelocidad);
+            }
+        }
+    }
+
+    //Deja los ejes X y Z como estén, pero el Y lo pone al valor por defecto.
+    private void asignarEjeYPorDefecto() {
+        this.transform.position = new Vector3(this.transform.position.x, defaultYposition, this.transform.position.z);
+    }
+
+    //Mover en el eje Y
+    private void moverEjeY(float cantidad) {
+        this.transform.position += new Vector3(0, +cantidad, 0);
     }
 }
