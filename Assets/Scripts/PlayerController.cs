@@ -119,4 +119,10 @@ public class PlayerController : MonoBehaviour {
     private void moverEjeY(float cantidad) {
         this.transform.position += new Vector3(0, +cantidad, 0);
     }
+    private void OnTriggerEnter2D(Collider2D otherElement) {
+        if (otherElement.gameObject.tag == "OwnTag_bottomBar") {
+            Destroy(gameObject);
+            Debug.Log("MUERTO");
+        }
+    }
 }

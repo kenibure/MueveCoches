@@ -8,6 +8,8 @@ TagManager:
   - OwnTag_RightPanel
   - OwnTag_LeftPanel
   - OwnTag_enemyDestroyer
+  - OwnTag_bottomBar
+  - OwnTag_player
   layers:
   - Default
   - TransparentFX
