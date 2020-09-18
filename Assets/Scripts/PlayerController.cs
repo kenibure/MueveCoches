@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed = 10; //Se pone public para que aparezca fuera, en el Unity y sea más cómodo.
+    public float lateralSpeed = 10; //Se pone public para que aparezca fuera, en el Unity y sea más cómodo.
     public float padding = 1f; //Esto es por que hay que añadir un pequeño margen a cada extremo, por que si no al hacer el CLAMP, si que deja salir la mitad del objeto.
     public float defaultYposition = -2f; //Posición Y por defecto. Es donde el player va a tender a ir.
 
@@ -43,14 +43,14 @@ public class PlayerController : MonoBehaviour {
         switch(direccion) {
             case Direccion.derecha:
                 //Debug.Log("Se hace movimiento a la derecha");
-                this.transform.position += new Vector3(Time.deltaTime * speed, 0, 0);
+                this.transform.position += new Vector3(Time.deltaTime * lateralSpeed, 0, 0);
                 // Clamping, para que no se salga de los margenes. Clamp recibe 3 números, si el primero no está entre los límites de después, lo pone al límite
                 /*float newX = Mathf.Clamp(this.transform.position.x, -10 + padding, 10 - padding); //Esto no es por píxeles, es por unidades. Fuera en Unity, en la cámara, el campo "size", son las unidades a cada lado, es decir si es "10", sería 20x20 (se multiplica el size por 2)
                 this.transform.position = new Vector3(newX, this.transform.position.y, this.transform.position.z);*/
                 break;
             case Direccion.izquierda:
                 //Debug.Log("Se hace movimiento a la izquierda");
-                this.transform.position += new Vector3(-1 * Time.deltaTime * speed, 0, 0);
+                this.transform.position += new Vector3(-1 * Time.deltaTime * lateralSpeed, 0, 0);
                 // Clamping, para que no se salga de los margenes. Clamp recibe 3 números, si el primero no está entre los límites de después, lo pone al límite
                 float newX2 = Mathf.Clamp(this.transform.position.x, -10 + padding, 10 - padding); //Esto no es por píxeles, es por unidades. Fuera en Unity, en la cámara, el campo "size", son las unidades a cada lado, es decir si es "10", sería 20x20 (se multiplica el size por 2)
                 this.transform.position = new Vector3(newX2, this.transform.position.y, this.transform.position.z);
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour {
     private void movimientoPorDefecto() {
         rigidBody2D.velocity = Vector2.zero;
 
-        float factorVelocidad = Time.deltaTime * speed / 10;
+        float factorVelocidad = Time.deltaTime * lateralSpeed / 10;
 
         if (this.transform.position.y > defaultYposition) {
             if(this.transform.position.y - factorVelocidad < defaultYposition) {

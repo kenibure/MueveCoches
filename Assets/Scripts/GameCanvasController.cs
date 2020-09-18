@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameCanvasController : MonoBehaviour {
 
-    private float parallaxSpeed = 0.2f;
+    public float backgroundSpeed = 0.2f;
     public RawImage background; //Carretera, el de encima
     public RawImage bottomBackground; //Agua, el de abajo
 
@@ -22,7 +22,7 @@ public class GameCanvasController : MonoBehaviour {
         efectoParallax();
     }
     private void efectoParallax() { //Es el efecto de que el fondo se mueva más lento que la plataforma para dar sensación de produndidad.
-        float finalSpeed = parallaxSpeed * Time.deltaTime; //Debe calcularse para que se adecúe a la pantalla, por eso no puede usarse directamente parallaxSpeed.
+        float finalSpeed = backgroundSpeed * Time.deltaTime; //Debe calcularse para que se adecúe a la pantalla, por eso no puede usarse directamente parallaxSpeed.
         moverBackground(finalSpeed);
         moverBottomBackground(finalSpeed);
     }

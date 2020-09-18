@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy01Controller : MonoBehaviour
 {
 
-    public float velocity = 4f;
+    public float velocity = 5f;
 
     private Rigidbody2D rb2d;
 
