@@ -10,13 +10,11 @@ public class LeftPanelController : MonoBehaviour, IPointerDownHandler, IPointerU
 
     public void OnPointerDown(PointerEventData eventData) {
         buttonPressed = true;
-        Debug.Log(" <--  Mover izquierda.");
         playerController.activarMovimientoIzquierda();
     }
 
     public void OnPointerUp(PointerEventData eventData) {
         buttonPressed = false;
-        Debug.Log("|<-- Parar movimiento izquierda.");
         playerController.desactivarMovimiento();
     }
 }

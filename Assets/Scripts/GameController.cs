@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 
     private EnumEstadoPartida estadoPartida = EnumEstadoPartida.enMarcha;
     public GameObject enemyGenerator01;
+    public GameObject point01Generator;
 
     public void cambiarEscena(string escenaDestino) {
         print("Cambiando a la escena " + escenaDestino);
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour {
         print("Se a a poner el juego en pausa.");
         estadoPartida = EnumEstadoPartida.pausa;
         enemyGenerator01.SendMessage("pauseLandscapeMovement");
+        point01Generator.SendMessage("pauseLandscapeMovement");
         asignarVelocidadJuego(0);
     }
 
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour {
         print("Se a a quitar pausa.");
         estadoPartida = EnumEstadoPartida.enMarcha;
         enemyGenerator01.SendMessage("resumeLandscapeMovement");
+        point01Generator.SendMessage("resumeLandscapeMovement");
         asignarVelocidadJuego(1);
     }
 
@@ -51,6 +54,12 @@ public class GameController : MonoBehaviour {
     //Este método resetea todo lo que haga falta para que si se relanza el juego todo empiece. Debe lanzarse al salir.
     public void resetearTodo() {
         quitarPausa();
+    }
+
+    //Se llama a este metodo cuando se ha conseguido un punto.
+    public void pointWon() {
+        print("¡PUNTO!");
+        enemyGenerator01.SendMessage("incrementGeneratorSpeed");
     }
 
 }

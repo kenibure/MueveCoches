@@ -10,13 +10,11 @@ public class RightPanelController : MonoBehaviour, IPointerDownHandler, IPointer
 
     public void OnPointerDown(PointerEventData eventData) {
         buttonPressed = true;
-        Debug.Log(" -->  Mover derecha.");
         playerController.activarMovimientoDerecha();
     }
 
     public void OnPointerUp(PointerEventData eventData) {
         buttonPressed = false;
-        Debug.Log(" -->| Parar movimiento derecha.");
         playerController.desactivarMovimiento();
     }
 }

@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Este generador de enemigos se va a ir moviendo hacia los lados.
-public class Enemy01GeneratorController : MonoBehaviour {
+public class Point01GeneratorController : MonoBehaviour {
 
-    public GameObject enemy01Prefab;
-    public float startGeneratorTimer = 1f;
+    public GameObject point01prefab;
+    public GameObject gameController;
+    public float startGeneratorTimer = 2.5f;
     public float leftLimit = -1.5f;
     public float rightLimit = 1.5f;
-    public float landscapeSpeed = 0.02f;
+    public float landscapeSpeed = 0.05f;
     private CurrentCourse currentCourse;
     private CurrentCourse lastKnowedCourse; //Este se utiliza para cuando se le da a pausa que luego sepa para donde iba
 
 
-
     // Start is called before the first frame update
     void Start() {
-        generateLoopCreateEnemies(startGeneratorTimer);
+        generateLoopCreatePoints(startGeneratorTimer);
         currentCourse = CurrentCourse.derecha;
     }
 
@@ -26,9 +25,11 @@ public class Enemy01GeneratorController : MonoBehaviour {
         landscapeMovement();
     }
 
-    private void CreateEnemy() {
-        Instantiate(enemy01Prefab, transform.position, Quaternion.identity);
+    //Son las posibles direcciones en las que se puede mover este generador de puntos.
+    private enum CurrentCourse {
+        derecha, izquierda, parado
     }
+
 
     //Realiza el movimiento horizontal
     private void landscapeMovement() {
@@ -58,13 +59,7 @@ public class Enemy01GeneratorController : MonoBehaviour {
 
     //Se le pasa un vector y coloca el GameObject en ese vector.
     private void changePosition(Vector3 destino) {
-
         this.transform.position = destino;
-    }
-
-    //Son las posibles direcciones en las que se puede mover este generador de enemigos.
-    private enum CurrentCourse {
-        derecha, izquierda, parado
     }
 
     public void pauseLandscapeMovement() {
@@ -76,19 +71,13 @@ public class Enemy01GeneratorController : MonoBehaviour {
         currentCourse = lastKnowedCourse;
     }
 
-    //Con esto se incrementa la velocidad a la que se generan los enemigos.
-    public void incrementGeneratorSpeed() {
-        float generatorSpeedIncrementorFactor = 0.01f;
-        float newTimer = startGeneratorTimer  - generatorSpeedIncrementorFactor;
-        cancelLoopCreateEnemies();
-        generateLoopCreateEnemies(newTimer);
+    private void generateLoopCreatePoints(float timeBetweenAction) {
+        InvokeRepeating("CreatePoint", startGeneratorTimer, timeBetweenAction);
     }
 
-    private void generateLoopCreateEnemies(float timeBetweenAction) {
-        InvokeRepeating("CreateEnemy", 0f, timeBetweenAction);
-    }
-
-    private void cancelLoopCreateEnemies() {
-        CancelInvoke("CreateEnemy");
+    //Esto hace falta asi por que tiene un parámetro de entrada (el Game Controller)
+    private void CreatePoint() {
+        GameObject newObject = Instantiate(point01prefab, transform.position, Quaternion.identity) as GameObject;
+        newObject.SendMessage("ownSetGameControllerValue", gameController);
     }
 }
