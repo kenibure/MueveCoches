@@ -8,6 +8,10 @@ public class GameController : MonoBehaviour {
     private EnumEstadoPartida estadoPartida = EnumEstadoPartida.enMarcha;
     public GameObject enemyGenerator01;
     public GameObject point01Generator;
+    public GameObject botonPausa;
+    public GameObject menuPausa;
+    public GameObject menuFinDelJuego;
+    public GameObject player;
 
     public void cambiarEscena(string escenaDestino) {
         print("Cambiando a la escena " + escenaDestino);
@@ -17,23 +21,52 @@ public class GameController : MonoBehaviour {
     //Si el juego está en marcha lo pone en pausa, y si esta en pausa lo pone en marcha.
     public void cambiarEstadoPausa() {
         if(estadoPartida == EnumEstadoPartida.enMarcha) {
-            ponerElJuegoEnPausa();
+            lanzarMenuPausa();
         } else {
-            quitarPausa();
+            cerrarMenuPausa();
         }
 
     }
 
-    private void ponerElJuegoEnPausa() {
+    //Esto para el juego y lanza el menu de pausa.
+    private void lanzarMenuPausa() {
         print("Se a a poner el juego en pausa.");
+
+        //Desactiva el boton de pausa, por que ya se va a abrir el menu.
+        desactivarBotonPausa();
+
+        //Se activa el panel con el menu visual de pausa.
+        menuPausa.SetActive(true);
+
+        //Se paraliza todo.
+        pausarTodo();
+
+    }
+
+    //Esto reanuda el juego y cierra el menu de pausa.
+    private void cerrarMenuPausa() {
+
+        //Se activa el boton de pausa, por que ya se va a cerrar el menu.
+        activarBotonPausa();
+
+        //Se desactiva el panel con el menu visual de pausa.
+        menuPausa.SetActive(false);
+
+        //Se reanuda todo
+        reanudarTodo();
+
+    }
+
+    //Se encarga de dejar en pausa, pero NO lanza visualmente un menu de pausa, solo lo paraliza todo.
+    private void pausarTodo() {
         estadoPartida = EnumEstadoPartida.pausa;
         enemyGenerator01.SendMessage("pauseLandscapeMovement");
         point01Generator.SendMessage("pauseLandscapeMovement");
         asignarVelocidadJuego(0);
     }
 
-    private void quitarPausa() {
-        print("Se a a quitar pausa.");
+    //Se encarga de quitar la pausa, pero NO cierra visualmente un menu de pausa, solo lo reanuda todo.
+    private void reanudarTodo() {
         estadoPartida = EnumEstadoPartida.enMarcha;
         enemyGenerator01.SendMessage("resumeLandscapeMovement");
         point01Generator.SendMessage("resumeLandscapeMovement");
@@ -53,13 +86,39 @@ public class GameController : MonoBehaviour {
 
     //Este método resetea todo lo que haga falta para que si se relanza el juego todo empiece. Debe lanzarse al salir.
     public void resetearTodo() {
-        quitarPausa();
+        menuPausa.SetActive(false);
+        menuFinDelJuego.SetActive(false);
+        activarBotonPausa();
+        estadoPartida = EnumEstadoPartida.enMarcha;
+        player.SendMessage("initPlayer");
+
+        asignarVelocidadJuego(1);
     }
 
     //Se llama a este metodo cuando se ha conseguido un punto.
     public void pointWon() {
         print("¡PUNTO!");
         enemyGenerator01.SendMessage("incrementGeneratorSpeed");
+    }
+
+    public void finDelJuego() {
+        print("Fin del juego.");
+        pausarTodo();
+        desactivarBotonPausa();
+        estadoPartida = EnumEstadoPartida.finDelJuego;
+        menuFinDelJuego.SetActive(true);
+    }
+
+    public void reiniciarJuego() {
+        resetearTodo();
+    }
+
+    private void activarBotonPausa() {
+        botonPausa.SetActive(true);
+    }
+
+    private void desactivarBotonPausa() {
+        botonPausa.SetActive(false);
     }
 
 }

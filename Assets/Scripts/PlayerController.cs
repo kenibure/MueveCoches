@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour {
     public float padding = 1f; //Esto es por que hay que añadir un pequeño margen a cada extremo, por que si no al hacer el CLAMP, si que deja salir la mitad del objeto.
     public float defaultYposition = -2f; //Posición Y por defecto. Es donde el player va a tender a ir.
     public float portraitSpeed = 0.1f; //Velocidad de movimiento con el que vuelve a "defaultYposition"
+    public GameController gameController;
+
+    private Transform initialTransform;
 
     private Animator animator;
 
@@ -22,26 +25,37 @@ public class PlayerController : MonoBehaviour {
     private Direccion direccionActual;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        direccionActual = Direccion.quieto;
+    void Start() {
+        initialTransform = transform;
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
 
-        asignarEjeYPorDefecto();
+        initPlayer();
     }
 
     // Update is called once per frame
     void Update() {
 
+        if(gameController.getEstadoPartida() == EnumEstadoPartida.enMarcha) {
+            moverCoche(direccionActual);
 
-        moverCoche(direccionActual);
+            movimientoPorDefecto();
 
-        movimientoPorDefecto();
+        }
+
+    }
+
+    //Son las acciones iniciales que deben hacerse. Esto no se pone directamente en el "Start()", para poder llamarlo desde fuera y asi resetear el elemento.
+    public void initPlayer() {
+        transform.position = initialTransform.position;
+        
+        direccionActual = Direccion.quieto;
+
+        asignarEjeYPorDefecto();
     }
 
     private void moverCoche(Direccion direccion) {
-        switch(direccion) {
+        switch (direccion) {
             case Direccion.derecha:
                 //Debug.Log("Se hace movimiento a la derecha");
                 this.transform.position += new Vector3(Time.deltaTime * lateralSpeed, 0, 0);
@@ -87,11 +101,12 @@ public class PlayerController : MonoBehaviour {
 
     //En caso de que no esté en la posición del eje Y, por defecto se mueve hacia allá.
     private void movimientoPorDefecto() {
+
         rigidBody2D.velocity = Vector2.zero;
 
 
         if (this.transform.position.y > defaultYposition) {
-            if(this.transform.position.y - portraitSpeed < defaultYposition) {
+            if (this.transform.position.y - portraitSpeed < defaultYposition) {
                 asignarEjeYPorDefecto();
             } else {
                 moverEjeY(-portraitSpeed);
@@ -118,8 +133,10 @@ public class PlayerController : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D otherElement) {
         if (otherElement.gameObject.tag == "OwnTag_bottomBar") {
-            Destroy(gameObject);
             Debug.Log("MUERTO");
+            gameController.SendMessage("finDelJuego");
+
+            this.transform.position = new Vector3(0, 6, 0);
         }
     }
 }

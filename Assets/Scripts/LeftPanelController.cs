@@ -6,15 +6,15 @@ using UnityEngine;
 public class LeftPanelController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
     public bool buttonPressed;
-    public PlayerController playerController;
+    public GameObject playerController;
 
     public void OnPointerDown(PointerEventData eventData) {
         buttonPressed = true;
-        playerController.activarMovimientoIzquierda();
+        playerController.SendMessage("activarMovimientoIzquierda");
     }
 
     public void OnPointerUp(PointerEventData eventData) {
         buttonPressed = false;
-        playerController.desactivarMovimiento();
+        playerController.SendMessage("desactivarMovimiento");
     }
 }

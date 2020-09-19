@@ -5,5 +5,6 @@ using UnityEngine;
 public enum EnumEstadoPartida
 {
     enMarcha,
-    pausa
+    pausa,
+    finDelJuego
 }
