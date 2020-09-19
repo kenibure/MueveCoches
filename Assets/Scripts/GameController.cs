@@ -84,13 +84,15 @@ public class GameController : MonoBehaviour {
         Time.timeScale = velocidad;
     }
 
-    //Este método resetea todo lo que haga falta para que si se relanza el juego todo empiece. Debe lanzarse al salir.
+    //Este método resetea todo para que el juego vuelva al estado inicial.
     public void resetearTodo() {
         menuPausa.SetActive(false);
         menuFinDelJuego.SetActive(false);
         activarBotonPausa();
         estadoPartida = EnumEstadoPartida.enMarcha;
         player.SendMessage("initPlayer");
+        enemyGenerator01.SendMessage("initEnemyGenerator");
+        point01Generator.SendMessage("initPointGenerator");
 
         asignarVelocidadJuego(1);
     }
@@ -106,6 +108,8 @@ public class GameController : MonoBehaviour {
         pausarTodo();
         desactivarBotonPausa();
         estadoPartida = EnumEstadoPartida.finDelJuego;
+        eliminarElementosPorTag("OwnTag_enemy01");
+        eliminarElementosPorTag("OwnTag_point01");
         menuFinDelJuego.SetActive(true);
     }
 
@@ -119,6 +123,14 @@ public class GameController : MonoBehaviour {
 
     private void desactivarBotonPausa() {
         botonPausa.SetActive(false);
+    }
+
+    private void eliminarElementosPorTag(string tag) {
+
+        var clones = GameObject.FindGameObjectsWithTag(tag);
+        foreach (var clone in clones) {
+            Destroy(clone);
+        }
     }
 
 }

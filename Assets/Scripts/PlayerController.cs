@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     public float portraitSpeed = 0.1f; //Velocidad de movimiento con el que vuelve a "defaultYposition"
     public GameController gameController;
 
-    private Transform initialTransform;
+    private Vector3 initialPosition;
 
     private Animator animator;
 
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        initialTransform = transform;
+        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
 
@@ -47,7 +47,9 @@ public class PlayerController : MonoBehaviour {
 
     //Son las acciones iniciales que deben hacerse. Esto no se pone directamente en el "Start()", para poder llamarlo desde fuera y asi resetear el elemento.
     public void initPlayer() {
-        transform.position = initialTransform.position;
+
+        print("init player generator(" + initialPosition + ")");
+        transform.position = initialPosition;
         
         direccionActual = Direccion.quieto;
 

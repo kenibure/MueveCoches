@@ -13,17 +13,31 @@ public class Enemy01GeneratorController : MonoBehaviour {
     private CurrentCourse currentCourse;
     private CurrentCourse lastKnowedCourse; //Este se utiliza para cuando se le da a pausa que luego sepa para donde iba
 
+    private float currentGeneratorTimer;
+
+    private Vector3 initialPosition;
 
 
     // Start is called before the first frame update
     void Start() {
-        generateLoopCreateEnemies(startGeneratorTimer);
-        currentCourse = CurrentCourse.derecha;
+        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        initEnemyGenerator();
     }
 
     // Update is called once per frame
     void Update() {
         landscapeMovement();
+    }
+
+    //Son las acciones iniciales que deben hacerse. Esto no se pone directamente en el "Start()", para poder llamarlo desde fuera y asi resetear el elemento.
+    public void initEnemyGenerator() {
+        CancelInvoke("CreateEnemy");
+        changePosition(initialPosition);
+
+        currentCourse = CurrentCourse.derecha;
+        currentGeneratorTimer = startGeneratorTimer;
+        generateLoopCreateEnemies(startGeneratorTimer);
     }
 
     private void CreateEnemy() {
@@ -79,16 +93,29 @@ public class Enemy01GeneratorController : MonoBehaviour {
     //Con esto se incrementa la velocidad a la que se generan los enemigos.
     public void incrementGeneratorSpeed() {
         float generatorSpeedIncrementorFactor = 0.01f;
-        float newTimer = startGeneratorTimer  - generatorSpeedIncrementorFactor;
+        currentGeneratorTimer = currentGeneratorTimer - generatorSpeedIncrementorFactor;
+
         cancelLoopCreateEnemies();
-        generateLoopCreateEnemies(newTimer);
+        generateLoopCreateEnemies(currentGeneratorTimer);
     }
 
     private void generateLoopCreateEnemies(float timeBetweenAction) {
+        cambiarSentidoDelGenerator();
         InvokeRepeating("CreateEnemy", 0f, timeBetweenAction);
     }
 
     private void cancelLoopCreateEnemies() {
         CancelInvoke("CreateEnemy");
+    }
+
+    //Esto es para añadir aleatoriedad a las partidas.
+    private void cambiarSentidoDelGenerator() {
+        if (currentCourse == CurrentCourse.derecha) {
+            currentCourse = CurrentCourse.izquierda;
+        }
+
+        if (currentCourse == CurrentCourse.izquierda) {
+            currentCourse = CurrentCourse.derecha;
+        }
     }
 }

@@ -1673,7 +1673,7 @@ MonoBehaviour:
   botonPausa: {fileID: 2055820903}
   menuPausa: {fileID: 191067318}
   menuFinDelJuego: {fileID: 1912948434}
-  player: {fileID: 0}
+  player: {fileID: 1341011385}
 --- !u!4 &1122703604
 Transform:
   m_ObjectHideFlags: 0
@@ -1848,7 +1848,7 @@ MonoBehaviour:
   padding: 1
   defaultYposition: -2
   portraitSpeed: 0.001
-  gameController: {fileID: 1122703602}
+  gameController: {fileID: 1122703603}
 --- !u!95 &1341011388
 Animator:
   serializedVersion: 3

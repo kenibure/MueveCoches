@@ -13,9 +13,21 @@ public class Point01GeneratorController : MonoBehaviour {
     private CurrentCourse currentCourse;
     private CurrentCourse lastKnowedCourse; //Este se utiliza para cuando se le da a pausa que luego sepa para donde iba
 
+    private Vector3 initialPosition;
+
 
     // Start is called before the first frame update
     void Start() {
+        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        initPointGenerator();
+    }
+
+    //Son las acciones iniciales que deben hacerse. Esto no se pone directamente en el "Start()", para poder llamarlo desde fuera y asi resetear el elemento.
+    public void initPointGenerator() {
+        CancelInvoke("CreatePoint");
+        transform.position = initialPosition;
+
         generateLoopCreatePoints(startGeneratorTimer);
         currentCourse = CurrentCourse.derecha;
     }
