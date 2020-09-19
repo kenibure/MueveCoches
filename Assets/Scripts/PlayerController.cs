@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public float lateralSpeed = 10; //Se pone public para que aparezca fuera, en el Unity y sea más cómodo.
     public float padding = 1f; //Esto es por que hay que añadir un pequeño margen a cada extremo, por que si no al hacer el CLAMP, si que deja salir la mitad del objeto.
     public float defaultYposition = -2f; //Posición Y por defecto. Es donde el player va a tender a ir.
+    public float portraitSpeed = 0.1f; //Velocidad de movimiento con el que vuelve a "defaultYposition"
 
     private Animator animator;
 
@@ -91,21 +92,20 @@ public class PlayerController : MonoBehaviour {
     private void movimientoPorDefecto() {
         rigidBody2D.velocity = Vector2.zero;
 
-        float factorVelocidad = Time.deltaTime * lateralSpeed / 10;
 
         if (this.transform.position.y > defaultYposition) {
-            if(this.transform.position.y - factorVelocidad < defaultYposition) {
+            if(this.transform.position.y - portraitSpeed < defaultYposition) {
                 asignarEjeYPorDefecto();
             } else {
-                moverEjeY(-factorVelocidad);
+                moverEjeY(-portraitSpeed);
             }
         }
 
         if (this.transform.position.y < defaultYposition) {
-            if (this.transform.position.y + factorVelocidad > defaultYposition) {
+            if (this.transform.position.y + portraitSpeed > defaultYposition) {
                 asignarEjeYPorDefecto();
             } else {
-                moverEjeY(factorVelocidad);
+                moverEjeY(portraitSpeed);
             }
         }
     }

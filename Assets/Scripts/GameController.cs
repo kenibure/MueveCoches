@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 
     private EnumEstadoPartida estadoPartida = EnumEstadoPartida.enMarcha;
+    public GameObject enemyGenerator01;
 
     public void cambiarEscena(string escenaDestino) {
         print("Cambiando a la escena " + escenaDestino);
@@ -25,12 +26,14 @@ public class GameController : MonoBehaviour {
     private void ponerElJuegoEnPausa() {
         print("Se a a poner el juego en pausa.");
         estadoPartida = EnumEstadoPartida.pausa;
+        enemyGenerator01.SendMessage("pauseLandscapeMovement");
         asignarVelocidadJuego(0);
     }
 
     private void quitarPausa() {
         print("Se a a quitar pausa.");
         estadoPartida = EnumEstadoPartida.enMarcha;
+        enemyGenerator01.SendMessage("resumeLandscapeMovement");
         asignarVelocidadJuego(1);
     }
 

@@ -292,6 +292,17 @@ MonoBehaviour:
           m_StringArgument: EscenaInicial
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1122703603}
+        m_MethodName: resetearTodo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &110281652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +490,7 @@ RectTransform:
   m_GameObject: {fileID: 191067318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.0133, y: 7.833281, z: 5.0133}
+  m_LocalScale: {x: 5.0133, y: 7.833281, z: 1}
   m_Children:
   - {fileID: 1669660022}
   - {fileID: 110281650}
@@ -1370,6 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb121ed7e6016f46b6714436b501523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyGenerator01: {fileID: 1468702817}
 --- !u!4 &1122703604
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,7 +1533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341011385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.12, z: -2}
+  m_LocalPosition: {x: 0, y: -3.12, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 1318410969}
@@ -1540,9 +1552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab0a4331255be54aa07794388317bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lateralSpeed: 10
+  lateralSpeed: 5
   padding: 1
   defaultYposition: -2
+  portraitSpeed: 0.001
 --- !u!95 &1341011388
 Animator:
   serializedVersion: 3
@@ -1691,6 +1704,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy01Prefab: {fileID: 5414386983304615076, guid: f3a29ddb3443d2c4db7b12fa319fea0b,
     type: 3}
+  generatorTimer: 1
+  leftLimit: -1.5
+  rightLimit: 1.5
+  landscapeSpeed: 0.02
 --- !u!4 &1468702819
 Transform:
   m_ObjectHideFlags: 0
@@ -1950,6 +1967,17 @@ MonoBehaviour:
       - m_Target: {fileID: 2055820903}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1122703603}
+        m_MethodName: cambiarEstadoPausa
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2369,6 +2397,17 @@ MonoBehaviour:
       - m_Target: {fileID: 2055820903}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1122703603}
+        m_MethodName: cambiarEstadoPausa
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
