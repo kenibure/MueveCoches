@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Este generador de enemigos se va a ir moviendo hacia los lados.
-public class Enemy01GeneratorController : MonoBehaviour
-{
+public class Enemy01GeneratorController : MonoBehaviour {
 
     public GameObject enemy01Prefab;
-    public float generatorTimer = 1f;
+    public float startGeneratorTimer = 1f;
     public float leftLimit = -1.5f;
     public float rightLimit = 1.5f;
     public float landscapeSpeed = 0.02f;
@@ -17,15 +16,13 @@ public class Enemy01GeneratorController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        InvokeRepeating("CreateEnemy", 0f, generatorTimer);
+    void Start() {
+        generateLoopCreateEnemies(startGeneratorTimer);
         currentCourse = CurrentCourse.derecha;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         landscapeMovement();
     }
 
@@ -39,10 +36,10 @@ public class Enemy01GeneratorController : MonoBehaviour
         Vector3 currentPos = this.transform.position;
         Vector3 newPos = currentPos;
 
-        switch(currentCourse) {
+        switch (currentCourse) {
             case CurrentCourse.derecha:
                 newPos.x = currentPos.x + landscapeSpeed;
-                if(newPos.x > rightLimit) {
+                if (newPos.x > rightLimit) {
                     newPos.x = rightLimit;
                     currentCourse = CurrentCourse.izquierda;
                 }
@@ -56,7 +53,7 @@ public class Enemy01GeneratorController : MonoBehaviour
                 }
                 changePosition(newPos);
                 break;
-        }       
+        }
     }
 
     //Se le pasa un vector y coloca el GameObject en ese vector.
@@ -77,5 +74,21 @@ public class Enemy01GeneratorController : MonoBehaviour
 
     public void resumeLandscapeMovement() {
         currentCourse = lastKnowedCourse;
+    }
+
+    //Con esto se incrementa la velocidad a la que se generan los enemigos.
+    public void incrementGeneratorSpeed() {
+        float generatorSpeedIncrementorFactor = 0.002f;
+        float newTimer = startGeneratorTimer  - generatorSpeedIncrementorFactor;
+        cancelLoopCreateEnemies();
+        generateLoopCreateEnemies(newTimer);
+    }
+
+    private void generateLoopCreateEnemies(float timeBetweenAction) {
+        InvokeRepeating("CreateEnemy", 0f, timeBetweenAction);
+    }
+
+    private void cancelLoopCreateEnemies() {
+        CancelInvoke("CreateEnemy");
     }
 }
