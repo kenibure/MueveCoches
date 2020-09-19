@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
@@ -12,6 +13,16 @@ public class GameController : MonoBehaviour {
     public GameObject menuPausa;
     public GameObject menuFinDelJuego;
     public GameObject player;
+    public Text labelPuntuation;
+    public Text labelPuntuationFinal; //Esto es en el cartel de Fin del Juego.
+
+    private int puntuacion = 0;
+
+
+    void Start() {
+        puntuacion = 0;
+        asignarPuntuacionAlLabelNormal();
+    }
 
     public void cambiarEscena(string escenaDestino) {
         print("Cambiando a la escena " + escenaDestino);
@@ -93,13 +104,16 @@ public class GameController : MonoBehaviour {
         player.SendMessage("initPlayer");
         enemyGenerator01.SendMessage("initEnemyGenerator");
         point01Generator.SendMessage("initPointGenerator");
+        puntuacion = 0;
+        asignarPuntuacionAlLabelNormal();
 
         asignarVelocidadJuego(1);
     }
 
     //Se llama a este metodo cuando se ha conseguido un punto.
     public void pointWon() {
-        print("¡PUNTO!");
+        puntuacion++;
+        asignarPuntuacionAlLabelNormal();
         enemyGenerator01.SendMessage("incrementGeneratorSpeed");
     }
 
@@ -110,6 +124,8 @@ public class GameController : MonoBehaviour {
         estadoPartida = EnumEstadoPartida.finDelJuego;
         eliminarElementosPorTag("OwnTag_enemy01");
         eliminarElementosPorTag("OwnTag_point01");
+        asignarPuntuacionAlLabelDeFinDeJuego();
+
         menuFinDelJuego.SetActive(true);
     }
 
@@ -131,6 +147,14 @@ public class GameController : MonoBehaviour {
         foreach (var clone in clones) {
             Destroy(clone);
         }
+    }
+
+    private void asignarPuntuacionAlLabelNormal() {
+        labelPuntuation.text = puntuacion + "";
+    }
+
+    private void asignarPuntuacionAlLabelDeFinDeJuego() {
+        labelPuntuationFinal.text = puntuacion + "";
     }
 
 }
