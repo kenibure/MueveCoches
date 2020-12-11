@@ -121,6 +121,7 @@ public class GameController : MonoBehaviour {
         print("Fin del juego.");
         pausarTodo();
         desactivarBotonPausa();
+        dejarLabelPuntuacionVacio();
         estadoPartida = EnumEstadoPartida.finDelJuego;
         eliminarElementosPorTag("OwnTag_enemy01");
         eliminarElementosPorTag("OwnTag_point01");
@@ -155,6 +156,11 @@ public class GameController : MonoBehaviour {
 
     private void asignarPuntuacionAlLabelDeFinDeJuego() {
         labelPuntuationFinal.text = puntuacion + "";
+    }
+
+    //Este método deja el Label de la puntuación vacío. La puntuación se mantiene en la variable "puntuacion".
+    private void dejarLabelPuntuacionVacio() {
+        labelPuntuation.text = "";
     }
 
 }
