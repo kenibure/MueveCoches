@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 1045048561}
   - component: {fileID: 1045048560}
   m_Layer: 5
-  m_Name: ejemploZonaDerecha
+  m_Name: ejemploZonaIzquierda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -680,8 +680,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -958.29034, y: 193.47}
-  m_SizeDelta: {x: 1814.0903, y: 77.72702}
+  m_AnchoredPosition: {x: -982.6677, y: 193.47}
+  m_SizeDelta: {x: 1765.3354, y: 77.72702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045048560
 MonoBehaviour:
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 1262035564}
   - component: {fileID: 1262035563}
   m_Layer: 5
-  m_Name: ejemploZonaIzquierda
+  m_Name: ejemploZonaDerecha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -855,8 +855,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 955.8, y: 193.5}
-  m_SizeDelta: {x: 1814.0903, y: 77.78157}
+  m_AnchoredPosition: {x: 981.4226, y: 193.5}
+  m_SizeDelta: {x: 1762.8452, y: 77.78157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262035563
 MonoBehaviour:
