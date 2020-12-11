@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour {
     public GameObject menuPausa;
     public GameObject menuFinDelJuego;
     public GameObject player;
+    public GameObject leftPannelColor; //Esta variable contiene el color del PANEL IZQUIERDO. Debe activarse al empezar la partida y al llegar la puntuación a "3" se desactivará.
+    public GameObject rightPannelColor; //Esta variable contiene el color del PANEL DERECHO. Debe activarse al empezar la partida y al llegar la puntuación a "3" se desactivará.
     public Text labelPuntuation;
     public Text labelPuntuationFinal; //Esto es en el cartel de Fin del Juego.
 
@@ -22,6 +24,7 @@ public class GameController : MonoBehaviour {
     void Start() {
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
+        asignarEstadoAPanelesDeColores(true);
     }
 
     public void cambiarEscena(string escenaDestino) {
@@ -106,6 +109,7 @@ public class GameController : MonoBehaviour {
         point01Generator.SendMessage("initPointGenerator");
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
+        asignarEstadoAPanelesDeColores(true);
 
         asignarVelocidadJuego(1);
     }
@@ -115,6 +119,9 @@ public class GameController : MonoBehaviour {
         puntuacion++;
         asignarPuntuacionAlLabelNormal();
         enemyGenerator01.SendMessage("incrementGeneratorSpeed");
+        if(puntuacion == 3) {
+            asignarEstadoAPanelesDeColores(false);
+        }
     }
 
     public void finDelJuego() {
@@ -163,4 +170,9 @@ public class GameController : MonoBehaviour {
         labelPuntuation.text = "";
     }
 
+    //Estos paneles son los que aparecen a la derecha e izquierda marcando donde debe pulsar el usuario para mover al personaje. La idea es que se desactiven al cambio de X puntos.
+    private void asignarEstadoAPanelesDeColores(bool nuevoEstado) {
+        leftPannelColor.SetActive(nuevoEstado);
+        rightPannelColor.SetActive(nuevoEstado);
+    }
 }
