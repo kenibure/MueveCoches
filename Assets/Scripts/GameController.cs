@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour {
     public GameObject rightPannelColor; //Esta variable contiene el color del PANEL DERECHO. Debe activarse al empezar la partida y al llegar la puntuación a "3" se desactivará.
     public Text labelPuntuation;
     public Text labelPuntuationFinal; //Esto es en el cartel de Fin del Juego.
+    public AudioClip pointSound;
+
+    private AudioSource audioSource; //Este elemento está creado como "Component" en el "Controller". Se asigna en el "Start()".
 
     private int puntuacion = 0;
 
@@ -25,6 +28,7 @@ public class GameController : MonoBehaviour {
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
         asignarEstadoAPanelesDeColores(true);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void cambiarEscena(string escenaDestino) {
@@ -116,6 +120,7 @@ public class GameController : MonoBehaviour {
 
     //Se llama a este metodo cuando se ha conseguido un punto.
     public void pointWon() {
+        reproducirSonido(pointSound);
         puntuacion++;
         asignarPuntuacionAlLabelNormal();
         enemyGenerator01.SendMessage("incrementGeneratorSpeed");
@@ -174,5 +179,12 @@ public class GameController : MonoBehaviour {
     private void asignarEstadoAPanelesDeColores(bool nuevoEstado) {
         leftPannelColor.SetActive(nuevoEstado);
         rightPannelColor.SetActive(nuevoEstado);
+    }
+
+    //Recibe un AudioClip y lo reproduce.
+    private void reproducirSonido(AudioClip audioClip) {
+        audioSource.clip = audioClip;
+        audioSource.Play();
+
     }
 }
