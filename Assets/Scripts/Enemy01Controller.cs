@@ -9,16 +9,18 @@ public class Enemy01Controller : MonoBehaviour
 
     private Rigidbody2D rb2d;
     public AudioClip playerCollisionSound;
-
-    private AudioSource audioSource; //Este elemento está creado como "Component" en el "Controller". Se asigna en el "Start()".
-
+    private GameObject gameController;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.velocity = Vector2.down * velocity;
-        audioSource = GetComponent<AudioSource>();
+    }
+
+    //Este método es para que el Generator que los crea pueda meter aqui la info del Game Controller.
+    public void ownSetGameControllerValue(GameObject gameController) {
+        this.gameController = gameController;
     }
 
     // Update is called once per frame
@@ -45,10 +47,9 @@ public class Enemy01Controller : MonoBehaviour
         }
     }
 
-    //Recibe un AudioClip y lo reproduce.
+    //Recibe un AudioClip y lo envía al Controlador para que lo reproduzca.
     private void reproducirSonido(AudioClip audioClip) {
-        audioSource.clip = audioClip;
-        audioSource.Play();
+        gameController.SendMessage("reproducirSonidoUnaVez", audioClip);
 
     }
 }

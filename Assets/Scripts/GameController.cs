@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour {
     private AudioSource audioSource; //Este elemento está creado como "Component" en el "Controller". Se asigna en el "Start()".
 
     private int puntuacion = 0;
+    private bool sonidosActivos; //Esta variable es la que marcará si deben reproducirse sonidos o no.
 
 
     void Start() {
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour {
         asignarPuntuacionAlLabelNormal();
         asignarEstadoAPanelesDeColores(true);
         audioSource = GetComponent<AudioSource>();
+        sonidosActivos = true;
     }
 
     public void cambiarEscena(string escenaDestino) {
@@ -120,7 +122,7 @@ public class GameController : MonoBehaviour {
 
     //Se llama a este metodo cuando se ha conseguido un punto.
     public void pointWon() {
-        reproducirSonido(pointSound);
+        reproducirSonidoUnaVez(pointSound);
         puntuacion++;
         asignarPuntuacionAlLabelNormal();
         enemyGenerator01.SendMessage("incrementGeneratorSpeed");
@@ -181,10 +183,34 @@ public class GameController : MonoBehaviour {
         rightPannelColor.SetActive(nuevoEstado);
     }
 
-    //Recibe un AudioClip y lo reproduce.
-    private void reproducirSonido(AudioClip audioClip) {
-        audioSource.clip = audioClip;
-        audioSource.Play();
+    //Recibe un AudioClip y lo reproduce una sola vez. De este modo no se machaca el sonido de fondo.
+    public void reproducirSonidoUnaVez(AudioClip audioClip) {
+        if(sonidosActivos) {
+            audioSource.PlayOneShot(audioClip);
+        }
+    }
 
+    //Al llamar a este método se activan o desactivan los sonidos. Recibe como parámetro el TAG del Toggle que marca si deben estar activos o no.
+    public void activarDesactivarSonidos(string toggleTag) {
+        GameObject gameObject = GameObject.FindGameObjectsWithTag(toggleTag)[0];
+        bool soundOn = gameObject.GetComponent<Toggle>().isOn;
+
+        if(soundOn == true) {
+            activarSonidos();
+        } else {
+            desactivarSonidos();
+        }
+    }
+
+    //Coloca a TRUE la variable que marca si los sonidos deben reproducirse o no.
+    private void activarSonidos() {
+        sonidosActivos = true;
+        audioSource.mute = false;
+    }
+
+    //Coloca a FALSE la variable que marca si los sonidos deben reproducirse o no y detiene los posibles sonidos que se estén reproduciendo.
+    private void desactivarSonidos() {
+        sonidosActivos = false;
+        audioSource.mute = true;
     }
 }

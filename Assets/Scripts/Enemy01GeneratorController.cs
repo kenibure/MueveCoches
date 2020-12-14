@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy01GeneratorController : MonoBehaviour {
 
     public GameObject enemy01Prefab;
+    public GameObject gameController;
     public float startGeneratorTimer = 1f;
     public float leftLimit = -1.5f;
     public float rightLimit = 1.5f;
@@ -41,7 +42,8 @@ public class Enemy01GeneratorController : MonoBehaviour {
     }
 
     private void CreateEnemy() {
-        Instantiate(enemy01Prefab, transform.position, Quaternion.identity);
+        GameObject newObject = Instantiate(enemy01Prefab, transform.position, Quaternion.identity) as GameObject;
+        newObject.SendMessage("ownSetGameControllerValue", gameController);
     }
 
     //Realiza el movimiento horizontal
