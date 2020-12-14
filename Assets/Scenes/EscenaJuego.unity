@@ -2179,6 +2179,7 @@ MonoBehaviour:
   labelPuntuation: {fileID: 1040746384}
   labelPuntuationFinal: {fileID: 739547950}
   pointSound: {fileID: 8300000, guid: 83ac5007b5e60994daa38cf18dc45232, type: 3}
+  deathSound: {fileID: 8300000, guid: d8bb7a39fac3243479ed2531ab8328a5, type: 3}
 --- !u!4 &1122703604
 Transform:
   m_ObjectHideFlags: 0

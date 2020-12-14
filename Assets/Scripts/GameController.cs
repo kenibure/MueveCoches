@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
     public Text labelPuntuation;
     public Text labelPuntuationFinal; //Esto es en el cartel de Fin del Juego.
     public AudioClip pointSound;
+    public AudioClip deathSound;
 
     private AudioSource audioSource; //Este elemento está creado como "Component" en el "Controller". Se asigna en el "Start()".
 
@@ -116,6 +117,7 @@ public class GameController : MonoBehaviour {
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
         asignarEstadoAPanelesDeColores(true);
+        playMusicaEnCurso();
 
         asignarVelocidadJuego(1);
     }
@@ -140,6 +142,8 @@ public class GameController : MonoBehaviour {
         eliminarElementosPorTag("OwnTag_enemy01");
         eliminarElementosPorTag("OwnTag_point01");
         asignarPuntuacionAlLabelDeFinDeJuego();
+        stopMusicaEnCurso();
+        reproducirSonidoUnaVez(deathSound);
 
         menuFinDelJuego.SetActive(true);
     }
@@ -212,5 +216,17 @@ public class GameController : MonoBehaviour {
     private void desactivarSonidos() {
         sonidosActivos = false;
         audioSource.mute = true;
+    }
+
+    //Para la música que se está reproduciendo, pero no mutea nada.
+    private void stopMusicaEnCurso() {
+        audioSource.Stop();
+    }
+
+    //Le da "Play" al reproductor de audio.
+    private void playMusicaEnCurso() {
+        if(!audioSource.isPlaying) {
+            audioSource.Play();
+        }
     }
 }
