@@ -134,6 +134,8 @@ public class PlayerController : MonoBehaviour {
         this.transform.position += new Vector3(0, +cantidad, 0);
     }
     private void OnTriggerEnter2D(Collider2D otherElement) {
+
+        //Colisión contra la barra inferior.
         if (otherElement.gameObject.tag == "OwnTag_bottomBar") {
             Debug.Log("MUERTO");
             gameController.SendMessage("finDelJuego");
