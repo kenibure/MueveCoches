@@ -19,11 +19,14 @@ public class GameController : MonoBehaviour {
     public Text labelPuntuationFinal; //Esto es en el cartel de Fin del Juego.
     public AudioClip pointSound;
     public AudioClip deathSound;
+    public Text labelRecordEnPausa; //Esto es en el menu de pausa.
 
     private AudioSource audioSource; //Este elemento está creado como "Component" en el "Controller". Se asigna en el "Start()".
 
     private int puntuacion = 0;
     private bool sonidosActivos; //Esta variable es la que marcará si deben reproducirse sonidos o no.
+
+    private string playerPrefs_PuntuacionMaxima = "Puntuacion_Maxima";
 
 
     void Start() {
@@ -58,6 +61,9 @@ public class GameController : MonoBehaviour {
 
         //Se activa el panel con el menu visual de pausa.
         menuPausa.SetActive(true);
+
+        //Se recarga el valor de la puntuación máxima.
+        asignarPuntuacionMaximaAlLabelDelRecord();
 
         //Se paraliza todo.
         pausarTodo();
@@ -133,8 +139,10 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    //Esto se lanza cuando se acaba la partida.
     public void finDelJuego() {
         print("Fin del juego.");
+        reproducirSonidoUnaVez(deathSound);
         pausarTodo();
         desactivarBotonPausa();
         dejarLabelPuntuacionVacio();
@@ -143,7 +151,8 @@ public class GameController : MonoBehaviour {
         eliminarElementosPorTag("OwnTag_point01");
         asignarPuntuacionAlLabelDeFinDeJuego();
         stopMusicaEnCurso();
-        reproducirSonidoUnaVez(deathSound);
+        guardarResultadoSiEsMejor(puntuacion);
+
 
         menuFinDelJuego.SetActive(true);
     }
@@ -228,5 +237,22 @@ public class GameController : MonoBehaviour {
         if(!audioSource.isPlaying) {
             audioSource.Play();
         }
+    }
+
+    //Recibe el número de puntos (nuevoResultado), y si es superior al último récord lo guarda como al.
+    private void guardarResultadoSiEsMejor(int nuevoResultado) {
+        if(nuevoResultado > recuperarPuntuacionMaxima()) {
+            PlayerPrefs.SetInt(playerPrefs_PuntuacionMaxima, nuevoResultado);
+        }
+    }
+
+    //Devuelve la puntuación máxima que hay guardada.
+    private int recuperarPuntuacionMaxima() {
+        return PlayerPrefs.GetInt(playerPrefs_PuntuacionMaxima, 0);
+    }
+
+    //Recupera la puntuación máxima y la asigna al Label que hay dentro del Menu pausa.
+    private void asignarPuntuacionMaximaAlLabelDelRecord() {
+        labelRecordEnPausa.text = recuperarPuntuacionMaxima().ToString();
     }
 }
