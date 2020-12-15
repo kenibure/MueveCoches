@@ -8,4 +8,10 @@ public class Controlador_EscenaInicial : MonoBehaviour {
         print("Cambiando a la escena " + escenaDestino);
         SceneManager.LoadScene(escenaDestino);
     }
+
+    //Este método se encarga de cerrar la aplicación.
+    public void salirDelJuego() {
+        print("Cerrando el juego.");
+        Application.Quit();
+    }
 }

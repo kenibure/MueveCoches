@@ -1,2 +1,0 @@
-Conseguir punto: impactMining_004
-Chocar con enemigo01: impactBell_heavy_003
