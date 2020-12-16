@@ -24,9 +24,10 @@ public class GameController : MonoBehaviour {
     private AudioSource audioSource; //Este elemento está creado como "Component" en el "Controller". Se asigna en el "Start()".
 
     private int puntuacion = 0;
-    private bool sonidosActivos; //Esta variable es la que marcará si deben reproducirse sonidos o no.
 
     private string playerPrefs_PuntuacionMaxima = "Puntuacion_Maxima";
+    private string playerPrefs_SonidosActivos = "Sonidos_Activos_1=TRUE;0=FALSE";
+    private string tag_ToggleSound = "OwnTag_ToggleSound";
 
 
     void Start() {
@@ -34,7 +35,11 @@ public class GameController : MonoBehaviour {
         asignarPuntuacionAlLabelNormal();
         asignarEstadoAPanelesDeColores(true);
         audioSource = GetComponent<AudioSource>();
-        sonidosActivos = true;
+        if(sonidosActivos()) {
+            activarSonidos();
+        } else {
+            mutearSonidos();
+        }
     }
 
     public void cambiarEscena(string escenaDestino) {
@@ -64,6 +69,11 @@ public class GameController : MonoBehaviour {
 
         //Se recarga el valor de la puntuación máxima.
         asignarPuntuacionMaximaAlLabelDelRecord();
+
+        //Se asigna el estado al Toggle del sonido.
+        GameObject gameObject = GameObject.FindGameObjectsWithTag(tag_ToggleSound)[0];
+        gameObject.GetComponent<Toggle>().isOn = sonidosActivos();
+
 
         //Se paraliza todo.
         pausarTodo();
@@ -198,7 +208,7 @@ public class GameController : MonoBehaviour {
 
     //Recibe un AudioClip y lo reproduce una sola vez. De este modo no se machaca el sonido de fondo.
     public void reproducirSonidoUnaVez(AudioClip audioClip) {
-        if(sonidosActivos) {
+        if(sonidosActivos()) {
             audioSource.PlayOneShot(audioClip);
         }
     }
@@ -211,20 +221,20 @@ public class GameController : MonoBehaviour {
         if(soundOn == true) {
             activarSonidos();
         } else {
-            desactivarSonidos();
+            mutearSonidos();
         }
     }
 
     //Coloca a TRUE la variable que marca si los sonidos deben reproducirse o no.
     private void activarSonidos() {
-        sonidosActivos = true;
         audioSource.mute = false;
+        PlayerPrefs.SetInt(playerPrefs_SonidosActivos, 1);
     }
 
-    //Coloca a FALSE la variable que marca si los sonidos deben reproducirse o no y detiene los posibles sonidos que se estén reproduciendo.
-    private void desactivarSonidos() {
-        sonidosActivos = false;
+    //Coloca a FALSE la variable que marca si los sonido deben reproducirse o nos del PlayerPrefs y detiene los posibles sonidos que se estén reproduciendo.
+    private void mutearSonidos() {
         audioSource.mute = true;
+        PlayerPrefs.SetInt(playerPrefs_SonidosActivos, 0);
     }
 
     //Para la música que se está reproduciendo, pero no mutea nada.
@@ -234,8 +244,12 @@ public class GameController : MonoBehaviour {
 
     //Le da "Play" al reproductor de audio.
     private void playMusicaEnCurso() {
+
         if(!audioSource.isPlaying) {
             audioSource.Play();
+        }
+        if (!sonidosActivos()) {
+            mutearSonidos();
         }
     }
 
@@ -254,5 +268,13 @@ public class GameController : MonoBehaviour {
     //Recupera la puntuación máxima y la asigna al Label que hay dentro del Menu pausa.
     private void asignarPuntuacionMaximaAlLabelDelRecord() {
         labelRecordEnPausa.text = recuperarPuntuacionMaxima().ToString();
+    }
+
+    private bool sonidosActivos() {
+        if (PlayerPrefs.GetInt(playerPrefs_SonidosActivos, 1) == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

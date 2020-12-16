@@ -7,5 +7,4 @@
 
 ## Tareas pendientes
 - Mejorar tipografía en pantalla de fin del juego (escala).
-- Guardar si se quiere sonido o no.
 - Permitir quitar sonido en el menú.
