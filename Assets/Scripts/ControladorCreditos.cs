@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ControladorCreditos : MonoBehaviour
 {
-    string miPaypal = "https://paypal.me/rknb";
+    string miPaypal = "https://www.paypal.me/rknb";
     // Start is called before the first frame update
     void Start()
     {

@@ -755,8 +755,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Dise\xF1o art\xEDstico y programaci\xF3n:\nRub\xE9n Navarro Dav\xF3\n\nSonido:
-    \nKenney Vleugels (Kenney.nl)\n\n\nContacto:\nruben.navarrodavo@gmail.com"
+  m_Text: "Dise\xF1o gr\xE1fico y programaci\xF3n:\nRub\xE9n Navarro Dav\xF3\n\nM\xFAsica
+    y sonidos:\nDL-Sounds (dl-sounds.com)\nKenney Vleugels (Kenney.nl)\n\nContacto:\nruben.navarrodavo@gmail.com"
 --- !u!222 &887120093
 CanvasRenderer:
   m_ObjectHideFlags: 0
