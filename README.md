@@ -6,5 +6,4 @@
 - El coche se sustituye por un Sprite de Fausto que es un ser inventado.
 
 ## Tareas pendientes
-- Mejorar tipografía en pantalla de fin del juego (escala).
 - Permitir quitar sonido en el menú.
