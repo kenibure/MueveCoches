@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GoogleMobileAds.Api;
 
 public class GameController : MonoBehaviour {
 
@@ -44,6 +45,7 @@ public class GameController : MonoBehaviour {
 
     public void cambiarEscena(string escenaDestino) {
         print("Cambiando a la escena " + escenaDestino);
+        cerrarTodasPublicidades();
         SceneManager.LoadScene(escenaDestino);
     }
 
@@ -60,6 +62,8 @@ public class GameController : MonoBehaviour {
     //Esto para el juego y lanza el menu de pausa.
     private void lanzarMenuPausa() {
         print("Se a a poner el juego en pausa.");
+
+        lanzarBannerPublicidadEnPausa();
 
         //Desactiva el boton de pausa, por que ya se va a abrir el menu.
         desactivarBotonPausa();
@@ -88,6 +92,8 @@ public class GameController : MonoBehaviour {
 
         //Se desactiva el panel con el menu visual de pausa.
         menuPausa.SetActive(false);
+
+        eliminarAnuncioPausa();
 
         //Se reanuda todo
         reanudarTodo();
@@ -134,6 +140,7 @@ public class GameController : MonoBehaviour {
         asignarPuntuacionAlLabelNormal();
         asignarEstadoAPanelesDeColores(true);
         playMusicaEnCurso();
+        cerrarTodasPublicidades();
 
         asignarVelocidadJuego(1);
     }
@@ -276,5 +283,35 @@ public class GameController : MonoBehaviour {
         } else {
             return false;
         }
+    }
+
+
+    BannerView bannerViewPausa;
+    private void lanzarBannerPublicidadEnPausa() {
+        string adMobsApp_miAplicacion = "ca-app-pub-8067831116754417~1698628271";
+        string adMobsApp_anuncioPausa = "ca-app-pub-8067831116754417/4655237756";
+
+        MobileAds.Initialize(initStatus => { });
+
+        bannerViewPausa = new BannerView(adMobsApp_anuncioPausa, AdSize.Banner, AdPosition.Bottom);
+
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(adMobsApp_miAplicacion);
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+
+        // Load the banner with the request.
+        bannerViewPausa.LoadAd(request);
+    }
+
+    private void eliminarAnuncioPausa() {
+        if (bannerViewPausa != null) {
+            bannerViewPausa.Destroy();
+        }
+    }
+
+    private void cerrarTodasPublicidades() {
+            eliminarAnuncioPausa();
     }
 }

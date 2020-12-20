@@ -46,4 +46,5 @@ public class Controlador_EscenaInicial : MonoBehaviour {
     private void eliminarAnuncio() {
         bannerView.Destroy();
     }
+
 }
