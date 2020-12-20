@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
     public GameObject rightPannelColor; //Esta variable contiene el color del PANEL DERECHO. Debe activarse al empezar la partida y al llegar la puntuación a "3" se desactivará.
     public Text labelPuntuation;
     public Text labelPuntuationFinal; //Esto es en el cartel de Fin del Juego.
+    public Text labelRecordEnFinDelJuego; //Esto es en el cartel de Fin del Juego.
     public AudioClip pointSound;
     public AudioClip deathSound;
     public Text labelRecordEnPausa; //Esto es en el menu de pausa.
@@ -175,9 +176,9 @@ public class GameController : MonoBehaviour {
         estadoPartida = EnumEstadoPartida.finDelJuego;
         eliminarElementosPorTag("OwnTag_enemy01");
         eliminarElementosPorTag("OwnTag_point01");
+        guardarResultadoSiEsMejor(puntuacion);
         asignarPuntuacionAlLabelDeFinDeJuego();
         stopMusicaEnCurso();
-        guardarResultadoSiEsMejor(puntuacion);
 
 
         menuFinDelJuego.SetActive(true);
@@ -209,6 +210,7 @@ public class GameController : MonoBehaviour {
 
     private void asignarPuntuacionAlLabelDeFinDeJuego() {
         labelPuntuationFinal.text = puntuacion + "";
+        labelRecordEnFinDelJuego.text = recuperarPuntuacionMaxima() + "";
     }
 
     //Este método deja el Label de la puntuación vacío. La puntuación se mantiene en la variable "puntuacion".

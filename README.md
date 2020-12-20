@@ -6,9 +6,8 @@
 - El coche se sustituye por un Sprite de Fausto que es un ser inventado.
 
 ## Tareas pendientes
-- Permitir quitar sonido en el Menú de Inicio.
 - Cambiar fuentes de los textos.
-- Añadir publicidad al Menú de Créditos.
 - Cambiar frecuencia de enemigo01 para que no llegue a un punto imposible.
+- Permitir quitar sonido en el Menú de Inicio.
+- Añadir publicidad al Menú de Créditos.
 - Añadir enemigo02, que al tocarlo se acabe la partida. ¿Una línea recta tipo láser?
-- En fin de partida mostrar el récord.
