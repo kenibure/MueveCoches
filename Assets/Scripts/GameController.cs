@@ -24,19 +24,27 @@ public class GameController : MonoBehaviour {
 
     private AudioSource audioSource; //Este elemento está creado como "Component" en el "Controller". Se asigna en el "Start()".
 
+    private BannerView bannerViewPausa;
+    private BannerView bannerViewFinDelJuego;
+
     private int puntuacion = 0;
 
     private string playerPrefs_PuntuacionMaxima = "Puntuacion_Maxima";
     private string playerPrefs_SonidosActivos = "Sonidos_Activos_1=TRUE;0=FALSE";
     private string tag_ToggleSound = "OwnTag_ToggleSound";
 
+    private string adMobsApp_miAplicacion = "ca-app-pub-8067831116754417~1698628271";
+    private string adMobsApp_anuncioPausa = "ca-app-pub-8067831116754417/4655237756";
+    private string adMobsApp_anuncioFinDelJuego = "ca-app-pub-8067831116754417/4655237756";
+
 
     void Start() {
+        incializadoresDePublicidad();
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
         asignarEstadoAPanelesDeColores(true);
         audioSource = GetComponent<AudioSource>();
-        if(sonidosActivos()) {
+        if (sonidosActivos()) {
             activarSonidos();
         } else {
             mutearSonidos();
@@ -51,7 +59,7 @@ public class GameController : MonoBehaviour {
 
     //Si el juego está en marcha lo pone en pausa, y si esta en pausa lo pone en marcha.
     public void cambiarEstadoPausa() {
-        if(estadoPartida == EnumEstadoPartida.enMarcha) {
+        if (estadoPartida == EnumEstadoPartida.enMarcha) {
             lanzarMenuPausa();
         } else {
             cerrarMenuPausa();
@@ -151,7 +159,7 @@ public class GameController : MonoBehaviour {
         puntuacion++;
         asignarPuntuacionAlLabelNormal();
         enemyGenerator01.SendMessage("incrementGeneratorSpeed");
-        if(puntuacion == 3) {
+        if (puntuacion == 3) {
             asignarEstadoAPanelesDeColores(false);
         }
     }
@@ -159,6 +167,7 @@ public class GameController : MonoBehaviour {
     //Esto se lanza cuando se acaba la partida.
     public void finDelJuego() {
         print("Fin del juego.");
+        lanzarBannerPublicidadEnFinDelJuego();
         reproducirSonidoUnaVez(deathSound);
         pausarTodo();
         desactivarBotonPausa();
@@ -215,7 +224,7 @@ public class GameController : MonoBehaviour {
 
     //Recibe un AudioClip y lo reproduce una sola vez. De este modo no se machaca el sonido de fondo.
     public void reproducirSonidoUnaVez(AudioClip audioClip) {
-        if(sonidosActivos()) {
+        if (sonidosActivos()) {
             audioSource.PlayOneShot(audioClip);
         }
     }
@@ -225,7 +234,7 @@ public class GameController : MonoBehaviour {
         GameObject gameObject = GameObject.FindGameObjectsWithTag(toggleTag)[0];
         bool soundOn = gameObject.GetComponent<Toggle>().isOn;
 
-        if(soundOn == true) {
+        if (soundOn == true) {
             activarSonidos();
         } else {
             mutearSonidos();
@@ -252,7 +261,7 @@ public class GameController : MonoBehaviour {
     //Le da "Play" al reproductor de audio.
     private void playMusicaEnCurso() {
 
-        if(!audioSource.isPlaying) {
+        if (!audioSource.isPlaying) {
             audioSource.Play();
         }
         if (!sonidosActivos()) {
@@ -262,7 +271,7 @@ public class GameController : MonoBehaviour {
 
     //Recibe el número de puntos (nuevoResultado), y si es superior al último récord lo guarda como al.
     private void guardarResultadoSiEsMejor(int nuevoResultado) {
-        if(nuevoResultado > recuperarPuntuacionMaxima()) {
+        if (nuevoResultado > recuperarPuntuacionMaxima()) {
             PlayerPrefs.SetInt(playerPrefs_PuntuacionMaxima, nuevoResultado);
         }
     }
@@ -285,18 +294,9 @@ public class GameController : MonoBehaviour {
         }
     }
 
-
-    BannerView bannerViewPausa;
     private void lanzarBannerPublicidadEnPausa() {
-        string adMobsApp_miAplicacion = "ca-app-pub-8067831116754417~1698628271";
-        string adMobsApp_anuncioPausa = "ca-app-pub-8067831116754417/4655237756";
-
-        MobileAds.Initialize(initStatus => { });
 
         bannerViewPausa = new BannerView(adMobsApp_anuncioPausa, AdSize.Banner, AdPosition.Bottom);
-
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(adMobsApp_miAplicacion);
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
@@ -305,13 +305,42 @@ public class GameController : MonoBehaviour {
         bannerViewPausa.LoadAd(request);
     }
 
+    private void lanzarBannerPublicidadEnFinDelJuego() {
+
+        bannerViewFinDelJuego = new BannerView(adMobsApp_anuncioFinDelJuego, AdSize.Banner, AdPosition.Bottom);
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+
+        // Load the banner with the request.
+        bannerViewFinDelJuego.LoadAd(request);
+    }
+
+    //Esto debe llamarse al comienzo.
+    private void incializadoresDePublicidad() {
+
+        MobileAds.Initialize(initStatus => { });
+
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(adMobsApp_miAplicacion);
+
+    }
+
     private void eliminarAnuncioPausa() {
         if (bannerViewPausa != null) {
             bannerViewPausa.Destroy();
         }
     }
 
+    private void eliminarAnuncioFinDelJuego() {
+        if (bannerViewFinDelJuego != null) {
+            bannerViewFinDelJuego.Destroy();
+        }
+    }
+
+    //Este método destruye manualmente una a una todos los banners.
     private void cerrarTodasPublicidades() {
-            eliminarAnuncioPausa();
+        eliminarAnuncioPausa();
+        eliminarAnuncioFinDelJuego();
     }
 }
