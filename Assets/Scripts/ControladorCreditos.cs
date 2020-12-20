@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ControladorCreditos : MonoBehaviour
-{
+public class ControladorCreditos : MonoBehaviour {
     string miPaypal = "https://www.paypal.me/rknb";
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 
     public void lanzarPaypal() {
@@ -26,4 +22,5 @@ public class ControladorCreditos : MonoBehaviour
         print("Cambiando a la escena " + escenaDestino);
         SceneManager.LoadScene(escenaDestino);
     }
+
 }
