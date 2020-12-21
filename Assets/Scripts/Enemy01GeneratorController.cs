@@ -11,6 +11,8 @@ public class Enemy01GeneratorController : MonoBehaviour {
     public float leftLimit = -1.5f;
     public float rightLimit = 1.5f;
     public float landscapeSpeed = 0.02f;
+    private float generatorSpeedIncrementorFactor = 0.01f;
+    private float generatorSpeedLimiter = 0.7f; //Es la velocidad límite a la que se pueden generar enemigos más rápido que esto (número más bajo) no debe llegar.
     private CurrentCourse currentCourse;
     private CurrentCourse lastKnowedCourse; //Este se utiliza para cuando se le da a pausa que luego sepa para donde iba
 
@@ -94,15 +96,20 @@ public class Enemy01GeneratorController : MonoBehaviour {
 
     //Con esto se incrementa la velocidad a la que se generan los enemigos.
     public void incrementGeneratorSpeed() {
-        float generatorSpeedIncrementorFactor = 0.01f;
-        currentGeneratorTimer = currentGeneratorTimer - generatorSpeedIncrementorFactor;
-
         cancelLoopCreateEnemies();
         generateLoopCreateEnemies(currentGeneratorTimer);
+        if (currentGeneratorTimer > generatorSpeedLimiter) {
+            currentGeneratorTimer = currentGeneratorTimer - generatorSpeedIncrementorFactor;
+        }
+
+
+        //Esto hace que haya un 10% de posibilidades de que no cambie el sentido para darle aleatoriedad.
+        if (Random.Range(0,10) != 1) {
+            cambiarSentidoDelGenerator();
+        }
     }
 
     private void generateLoopCreateEnemies(float timeBetweenAction) {
-        cambiarSentidoDelGenerator();
         InvokeRepeating("CreateEnemy", 0f, timeBetweenAction);
     }
 
