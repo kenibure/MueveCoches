@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 10c7fe04464a3f142bc2f906e7d1066c, type: 3}
   m_Color: {r: 0.5019608, g: 0.94509804, b: 0.8745098, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -934,7 +934,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -958,7 +958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394706145}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1624,7 +1624,7 @@ GameObject:
   - component: {fileID: 712117397}
   m_Layer: 5
   m_Name: RightBar
-  m_TagString: Untagged
+  m_TagString: OwnTag_RightBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1755,7 +1755,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 361.0222, y: 0}
@@ -1921,7 +1921,7 @@ GameObject:
   - component: {fileID: 956004361}
   m_Layer: 5
   m_Name: LeftBar
-  m_TagString: Untagged
+  m_TagString: OwnTag_LeftBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1955,7 +1955,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -278.8205, y: 0}
@@ -2407,6 +2407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGenerator01: {fileID: 1468702817}
+  enemyGenerator02: {fileID: 1442364405}
   point01Generator: {fileID: 1984474721}
   botonPausa: {fileID: 2055820903}
   menuPausa: {fileID: 191067318}
@@ -3224,7 +3225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1468702818
 MonoBehaviour:
   m_ObjectHideFlags: 0

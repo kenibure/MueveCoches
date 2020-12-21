@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 
     private EnumEstadoPartida estadoPartida = EnumEstadoPartida.enMarcha;
     public GameObject enemyGenerator01;
+    public GameObject enemyGenerator02;
     public GameObject point01Generator;
     public GameObject botonPausa;
     public GameObject menuPausa;
@@ -113,6 +114,7 @@ public class GameController : MonoBehaviour {
     private void pausarTodo() {
         estadoPartida = EnumEstadoPartida.pausa;
         enemyGenerator01.SendMessage("pauseLandscapeMovement");
+        enemyGenerator02.SendMessage("pauseLandscapeMovement");
         point01Generator.SendMessage("pauseLandscapeMovement");
         asignarVelocidadJuego(0);
     }
@@ -144,6 +146,7 @@ public class GameController : MonoBehaviour {
         estadoPartida = EnumEstadoPartida.enMarcha;
         player.SendMessage("initPlayer");
         enemyGenerator01.SendMessage("initEnemyGenerator");
+        enemyGenerator02.SendMessage("initEnemyGenerator");
         point01Generator.SendMessage("initPointGenerator");
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
@@ -163,6 +166,22 @@ public class GameController : MonoBehaviour {
         if (puntuacion == 3) {
             asignarEstadoAPanelesDeColores(false);
         }
+
+        if (puntuacion == 15) {
+            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
+        }
+
+        if (puntuacion == 25) {
+            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
+        }
+
+        if (puntuacion == 35) {
+            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
+        }
+
+        if (puntuacion == 40) {
+            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
+        }
     }
 
     //Esto se lanza cuando se acaba la partida.
@@ -175,6 +194,7 @@ public class GameController : MonoBehaviour {
         dejarLabelPuntuacionVacio();
         estadoPartida = EnumEstadoPartida.finDelJuego;
         eliminarElementosPorTag("OwnTag_enemy01");
+        eliminarElementosPorTag("OwnTag_enemy02");
         eliminarElementosPorTag("OwnTag_point01");
         guardarResultadoSiEsMejor(puntuacion);
         asignarPuntuacionAlLabelDeFinDeJuego();
@@ -344,5 +364,10 @@ public class GameController : MonoBehaviour {
     private void cerrarTodasPublicidades() {
         eliminarAnuncioPausa();
         eliminarAnuncioFinDelJuego();
+    }
+
+    //El Enemigo02 no está enbuclado si no que debe ser invocado. El propio Enemigo02 tiene dentro la llamada al siguiente Enemigo02 cuando se destruya, por lo que se irán generando infinitamente.
+    public void invocarEnemigo02() {
+        enemyGenerator02.SendMessage("generarEnemigo");
     }
 }
