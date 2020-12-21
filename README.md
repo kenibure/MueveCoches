@@ -30,3 +30,7 @@
         - UpheavalPro
             - Se utiliza para el título del juego.
             - Obtenido en: https://www.dafont.com/es/upheaval-pro.font?l[]=10&l[]=1
+    -Jimmy Campbell (https://www.dafont.com/es/jimmy-campbell.d5241)
+        - Arcadepix Plus
+            - Se utiliza para los números.
+            - Obtenido en: https://www.dafont.com/es/arcadepix-plus.font
