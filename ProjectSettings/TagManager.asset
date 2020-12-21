@@ -15,6 +15,7 @@ TagManager:
   - OwnTag_LeftPanelColor
   - OwnTag_RightPanelColor
   - OwnTag_ToggleSound
+  - OwnTag_enemy02
   layers:
   - Default
   - TransparentFX
