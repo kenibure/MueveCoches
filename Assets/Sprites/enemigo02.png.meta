@@ -1,43 +1,19 @@
 fileFormatVersion: 2
-guid: b45a7b6489deb0a4abdc6eac129b9643
+guid: 7e96453d5ad03644cb1a3d3323bcbabc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7741138603363008122
-    second: miPsj03_0
+      213: 6568958344653072972
+    second: enemigo02_0
   - first:
-      213: 6258878790804216845
-    second: miPsj03_1
+      213: 7403539933156077871
+    second: enemigo02_1
   - first:
-      213: 9202967958196857918
-    second: miPsj03_2
+      213: -3074741837424409675
+    second: enemigo02_2
   - first:
-      213: 753662782641255171
-    second: miPsj03_3
-  - first:
-      213: -1264986534381375962
-    second: miPsj03_0
-  - first:
-      213: 7938384965407096234
-    second: miPsj03_1
-  - first:
-      213: -30154585367820733
-    second: miPsj03_2
-  - first:
-      213: 2581875655838987127
-    second: miPsj03_3
-  - first:
-      213: 8142427067485153786
-    second: miPsj03_4
-  - first:
-      213: -7016923125862318973
-    second: miPsj03_5
-  - first:
-      213: 8035893593300979400
-    second: miPsj03_6
-  - first:
-      213: 8858032090453519014
-    second: miPsj03_7
+      213: 9208746390950356898
+    second: enemigo02_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -147,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: miPsj03_0
+      name: enemigo02_0
       rect:
         serializedVersion: 2
-        x: 82
-        y: 140
-        width: 14
-        height: 18
+        x: 25
+        y: 932
+        width: 95
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62eab8cf27dd17ee0800000000000000
-      internalID: -1264986534381375962
+      spriteID: c4a62658fc0a92b50800000000000000
+      internalID: 6568958344653072972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miPsj03_1
+      name: enemigo02_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 140
-        width: 14
-        height: 18
+        x: 134
+        y: 926
+        width: 95
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aad3461111fca2e60800000000000000
-      internalID: 7938384965407096234
+      spriteID: f21ff24f758aeb660800000000000000
+      internalID: 7403539933156077871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miPsj03_2
+      name: enemigo02_2
       rect:
         serializedVersion: 2
-        x: 118
-        y: 140
-        width: 14
-        height: 18
+        x: 245
+        y: 926
+        width: 95
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3464dca709ed49ff0800000000000000
-      internalID: -30154585367820733
+      spriteID: 5b3494ce6925455d0800000000000000
+      internalID: -3074741837424409675
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miPsj03_3
+      name: enemigo02_3
       rect:
         serializedVersion: 2
-        x: 135
-        y: 140
-        width: 14
-        height: 18
+        x: 362
+        y: 923
+        width: 95
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,92 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 773f288ca3aa4d320800000000000000
-      internalID: 2581875655838987127
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miPsj03_4
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 118
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: af96af60746bff070800000000000000
-      internalID: 8142427067485153786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miPsj03_5
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 118
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38cb0c22891ee9e90800000000000000
-      internalID: -7016923125862318973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miPsj03_6
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 118
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ceca89a5aa358f60800000000000000
-      internalID: 8035893593300979400
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miPsj03_7
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 118
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6aa2e70214d0eea70800000000000000
-      internalID: 8858032090453519014
+      spriteID: 2a7a1437d0a0ccf70800000000000000
+      internalID: 9208746390950356898
       vertices: []
       indices: 
       edges: []
