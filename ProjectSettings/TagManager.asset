@@ -12,6 +12,12 @@ TagManager:
   - OwnTag_player
   - OwnTag_enemy01
   - OwnTag_point01
+  - OwnTag_LeftPanelColor
+  - OwnTag_RightPanelColor
+  - OwnTag_ToggleSound
+  - OwnTag_enemy02
+  - OwnTag_LeftBar
+  - OwnTag_RightBar
   layers:
   - Default
   - TransparentFX
