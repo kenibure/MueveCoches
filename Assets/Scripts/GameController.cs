@@ -167,20 +167,10 @@ public class GameController : MonoBehaviour {
             asignarEstadoAPanelesDeColores(false);
         }
 
-        if (puntuacion == 15) {
-            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
-        }
-
-        if (puntuacion == 25) {
-            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
-        }
-
-        if (puntuacion == 35) {
-            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
-        }
-
-        if (puntuacion == 40) {
-            invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle.
+        if(puntuacion >= 15) {
+            if(puntuacion % 10 != 0 && puntuacion % 5 == 0) {
+                invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle. Creará uno de estos bucles cada 10 puntos a partir de 15.
+            }
         }
     }
 

@@ -17,6 +17,7 @@ public class Enemy02Controller : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
 
         generarYAlmacenarVelocidadHorizontal(Random.Range(0, 2) == 1);
+        velocidadVertical = velocidadVertical * generarFactorMultiplicador() * (generarFactorMultiplicador() / 3);
         asignarVelocidades();
     }
 
