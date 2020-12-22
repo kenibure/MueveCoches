@@ -11,6 +11,8 @@
 - Añadir publicidad al Menú de Créditos.
 - Añadir enemigo que al tocarlo se acabe la partida. ¿Una línea recta tipo láser?
 - Reducir elementos innecesarios.
+- Cambiar animación de la barra inferior.
+- Añadir publicidad al lanzar la partida pero que se quite a los X puntos.
 
 ## Versiones
 ### 0.1
