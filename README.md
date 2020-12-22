@@ -15,9 +15,14 @@
 - Añadir publicidad al lanzar la partida pero que se quite a los X puntos.
 
 ## Versiones
-### 0.1
-- Lanzada en: 
+### 0.1.1
+- Lanzada en: 2020-12-21
 - Es la versión beta inicial.
+
+### 0.2
+- Lanzada en: 
+- Se reduce el tamaño del APK.
+- Se añade un banner de publicidad al inicio de la partida que desaparece al llegar a 15 puntos.
 
 ## Créditos
 - Música y sonidos
