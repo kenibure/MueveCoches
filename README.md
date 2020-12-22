@@ -12,7 +12,6 @@
 - Añadir enemigo que al tocarlo se acabe la partida. ¿Una línea recta tipo láser?
 - Reducir elementos innecesarios.
 - Cambiar animación de la barra inferior.
-- Añadir publicidad al lanzar la partida pero que se quite a los X puntos.
 
 ## Versiones
 ### 0.1.1
@@ -22,7 +21,7 @@
 ### 0.2
 - Lanzada en: 
 - Se reduce el tamaño del APK.
-- Se añade un banner de publicidad al inicio de la partida que desaparece al llegar a 15 puntos.
+- Se añade un banner de publicidad al inicio de la partida que desaparece al llegar a 10 puntos.
 
 ## Créditos
 - Música y sonidos
