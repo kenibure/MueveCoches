@@ -177,7 +177,7 @@ public class GameController : MonoBehaviour {
             }
         }
 
-        if(puntuacion == 15) {
+        if(puntuacion == 10) {
             eliminarAnuncioInicioPartida();
         }
     }
@@ -186,7 +186,6 @@ public class GameController : MonoBehaviour {
     public void finDelJuego() {
         print("Fin del juego.");
         cerrarTodasPublicidades();
-        lanzarBannerPublicidadInicioPartida();
         lanzarBannerPublicidadEnFinDelJuego();
         reproducirSonidoUnaVez(deathSound);
         pausarTodo();
@@ -206,6 +205,7 @@ public class GameController : MonoBehaviour {
 
     public void reiniciarJuego() {
         resetearTodo();
+        lanzarBannerPublicidadInicioPartida();
     }
 
     private void activarBotonPausa() {
