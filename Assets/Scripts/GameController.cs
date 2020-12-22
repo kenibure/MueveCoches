@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour {
 
     private BannerView bannerViewPausa;
     private BannerView bannerViewFinDelJuego;
+    private BannerView bannerViewInicioPartida;
+    
 
     private int puntuacion = 0;
 
@@ -38,10 +40,12 @@ public class GameController : MonoBehaviour {
     private string adMobsApp_miAplicacion = "ca-app-pub-8067831116754417~1698628271";
     private string adMobsApp_anuncioPausa = "ca-app-pub-8067831116754417/4655237756";
     private string adMobsApp_anuncioFinDelJuego = "ca-app-pub-8067831116754417/4655237756";
+    private string adMobsApp_anuncioInicioPartida = "ca-app-pub-8067831116754417/6836115323";
 
 
     void Start() {
         incializadoresDePublicidad();
+        lanzarBannerPublicidadInicioPartida();
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
         asignarEstadoAPanelesDeColores(true);
@@ -172,11 +176,17 @@ public class GameController : MonoBehaviour {
                 invocarEnemigo02(); //Hay que tener en cuenta que el enemigo02 no está embuclado pero justo al destruirse invoca a otro por lo que es como un bucle. Creará uno de estos bucles cada 10 puntos a partir de 15.
             }
         }
+
+        if(puntuacion == 15) {
+            eliminarAnuncioInicioPartida();
+        }
     }
 
     //Esto se lanza cuando se acaba la partida.
     public void finDelJuego() {
         print("Fin del juego.");
+        cerrarTodasPublicidades();
+        lanzarBannerPublicidadInicioPartida();
         lanzarBannerPublicidadEnFinDelJuego();
         reproducirSonidoUnaVez(deathSound);
         pausarTodo();
@@ -328,6 +338,17 @@ public class GameController : MonoBehaviour {
         bannerViewFinDelJuego.LoadAd(request);
     }
 
+    private void lanzarBannerPublicidadInicioPartida() {
+
+        bannerViewInicioPartida = new BannerView(adMobsApp_anuncioInicioPartida, AdSize.Banner, AdPosition.Top);
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+
+        // Load the banner with the request.
+        bannerViewInicioPartida.LoadAd(request);
+    }
+
     //Esto debe llamarse al comienzo.
     private void incializadoresDePublicidad() {
 
@@ -350,10 +371,17 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    private void eliminarAnuncioInicioPartida() {
+        if (bannerViewInicioPartida != null) {
+            bannerViewInicioPartida.Destroy();
+        }
+    }
+
     //Este método destruye manualmente una a una todos los banners.
     private void cerrarTodasPublicidades() {
         eliminarAnuncioPausa();
         eliminarAnuncioFinDelJuego();
+        eliminarAnuncioInicioPartida();
     }
 
     //El Enemigo02 no está enbuclado si no que debe ser invocado. El propio Enemigo02 tiene dentro la llamada al siguiente Enemigo02 cuando se destruya, por lo que se irán generando infinitamente.
