@@ -22,6 +22,7 @@
 - Lanzada en: 
 - Se reduce el tamaño del APK.
 - Se añade un banner de publicidad al inicio de la partida que desaparece al llegar a 10 puntos.
+- Se anticipa el momento en que el Enemigo01 empieza a generar más despacio para mantener más hueco.
 
 ## Créditos
 - Música y sonidos
