@@ -11,11 +11,18 @@
 - Añadir publicidad al Menú de Créditos.
 - Añadir enemigo que al tocarlo se acabe la partida. ¿Una línea recta tipo láser?
 - Reducir elementos innecesarios.
+- Cambiar animación de la barra inferior.
 
 ## Versiones
-### 0.1
-- Lanzada en: 
+### 0.1.1
+- Lanzada en: 2020-12-21
 - Es la versión beta inicial.
+
+### 0.2
+- Lanzada en: 
+- Se reduce el tamaño del APK.
+- Se añade un banner de publicidad al inicio de la partida que desaparece al llegar a 10 puntos.
+- Se anticipa el momento en que el Enemigo01 empieza a generar más despacio para mantener más hueco.
 
 ## Créditos
 - Música y sonidos

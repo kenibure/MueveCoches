@@ -7,7 +7,7 @@ public class Enemy01GeneratorController : GenericEnemyGeneratorController {
 
     public float startGeneratorTimer = 1f; //El tiempo que hay INICIALMENTE entre cada creación de enemigos. (Se irá reduciendo al ir consiguiendo puntos).
     private float generatorSpeedIncrementorFactor = 0.01f;
-    private float generatorSpeedLimiter = 0.73f; //Es la velocidad límite a la que se pueden generar enemigos más rápido que esto (número más bajo). Una vez llega ahí el incremento de la velocidad es mucho más lento.
+    private float generatorSpeedLimiter = 0.75f; //Es la velocidad límite a la que se pueden generar enemigos más rápido que esto (número más bajo). Una vez llega ahí el incremento de la velocidad es mucho más lento.
 
     private float currentGeneratorTimer; //Time between an Enemy is generated.
 
