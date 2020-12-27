@@ -12,6 +12,8 @@
 - Añadir enemigo que al tocarlo se acabe la partida. ¿Una línea recta tipo láser?
 - Reducir elementos innecesarios.
 - Cambiar animación de la barra inferior.
+- Bola especial que permita que avances más hacia arriba.
+- Añadir distintos niveles.
 
 ## Versiones
 ### 0.1.1

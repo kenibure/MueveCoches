@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/EscenaInicial.unity
     guid: efe73a139f2f4584ea9c05858e3d8aff
   - enabled: 1
-    path: Assets/Scenes/EscenaJuego.unity
+    path: Assets/Scenes/EscenaJuego_nvl01.unity
     guid: 8b3e916e1f3b8d641a538d62a9da4582
   - enabled: 1
     path: Assets/Scenes/EscenaCreditos.unity
