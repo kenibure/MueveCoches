@@ -6,7 +6,7 @@
 - El coche se sustituye por un Sprite de Fausto que es un ser inventado.
 
 ## Tareas pendientes
-- Redondear esquinas de los menús.
+- Revisar estilo gráfico en los fondos de los menús.
 - Permitir quitar sonido en el Menú de Inicio.
 - Añadir publicidad al Menú de Créditos.
 - Añadir enemigo que al tocarlo se acabe la partida. ¿Una línea recta tipo láser?
@@ -19,10 +19,14 @@
 - Es la versión beta inicial.
 
 ### 0.2
-- Lanzada en: 
+- Lanzada en: 2020-12-23
 - Se reduce el tamaño del APK.
 - Se añade un banner de publicidad al inicio de la partida que desaparece al llegar a 10 puntos.
 - Se anticipa el momento en que el Enemigo01 empieza a generar más despacio para mantener más hueco.
+
+### 0.3
+- Lanzada en:
+- Se cambia el fondo de los menús.
 
 ## Créditos
 - Música y sonidos
