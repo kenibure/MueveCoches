@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour {
 
     private string adMobsApp_miAplicacion = "ca-app-pub-8067831116754417~1698628271";
     private string adMobsApp_anuncioPausa = "ca-app-pub-8067831116754417/4655237756";
-    private string adMobsApp_anuncioFinDelJuego = "ca-app-pub-8067831116754417/4655237756";
+    private string adMobsApp_anuncioFinDelJuego = "ca-app-pub-8067831116754417/6653896893";
     private string adMobsApp_anuncioInicioPartida = "ca-app-pub-8067831116754417/6836115323";
 
 
