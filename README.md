@@ -14,6 +14,7 @@
 - Cambiar animación de la barra inferior.
 - Bola especial que permita que avances más hacia arriba.
 - Añadir distintos niveles.
+- En la escena "EscenaElegirNive01", crear un listado de niveles que se genere mediante código en tiempo de ejecución.
 
 ## Versiones
 ### 0.1.1

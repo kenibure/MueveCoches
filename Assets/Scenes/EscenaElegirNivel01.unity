@@ -396,6 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42645a199faa4aa41a1e45d953af255e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listaDeNivelesEnCanvas: {fileID: 894206835}
+  prefabButton: {fileID: 2503226253891547740, guid: 5fbcb88466e930843853d724f54c9f65,
+    type: 3}
 --- !u!4 &1095951909
 Transform:
   m_ObjectHideFlags: 0
@@ -404,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095951907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22827615, y: -0.004274018, z: -6.9501953}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
