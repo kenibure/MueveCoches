@@ -15,6 +15,7 @@
 - Bola especial que permita que avances más hacia arriba.
 - Añadir distintos niveles.
 - En la escena "EscenaElegirNive01", crear un listado de niveles que se genere mediante código en tiempo de ejecución.
+- Añadir una opción el menú de fin de juego para volver al menú principal.
 
 ## Versiones
 ### 0.1.1
