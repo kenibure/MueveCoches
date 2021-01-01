@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using GoogleMobileAds.Api;
 
+//Este controlador se lanza en TODOS los niveles, por lo que se actúa asumiendo que todos los elementos (enemigos, etc) van a estar activos. Será luego el EnemyXXGeneratorController el que actúe o no.
 public class GameController : MonoBehaviour
 {
 
@@ -458,7 +459,7 @@ public class GameController : MonoBehaviour
     //El Enemigo02 no está enbuclado si no que debe ser invocado. El propio Enemigo02 tiene dentro la llamada al siguiente Enemigo02 cuando se destruya, por lo que se irán generando infinitamente.
     public void invocarEnemigo02()
     {
-        enemyGenerator02.SendMessage("generarEnemigo");
+        enemyGenerator02.SendMessage("generarEnemigo", infoNivel.enemigo02);
     }
 
     //Este método se encarga de asignar las características al nivel. 
@@ -466,8 +467,6 @@ public class GameController : MonoBehaviour
     private void asignarCaracteristicasAlNivel(InfoNivel infoNivel)
     {
         velocidadDeJuego = infoNivel.velocidadDeJuego;
-
-        //infoNivel.enemigo01.debeGenerarse = true;
 
         enemyGenerator01.SendMessage("initEnemyGenerator", infoNivel.enemigo01);
         asignarVelocidadJuego(velocidadDeJuego);
@@ -483,10 +482,14 @@ public class GameController : MonoBehaviour
         infoEnemigo01.generatorSpeedIncrementorFactor = 0.01f;
         infoEnemigo01.generatorSpeedLimiter = 0.75f;
 
+        InfoEnemigo02 infoEnemigo02 = new InfoEnemigo02();
+        infoEnemigo02.debeGenerarse = true;
+
 
         InfoNivel infoNivel = new InfoNivel();
         infoNivel.velocidadDeJuego = 1;
         infoNivel.enemigo01 = infoEnemigo01;
+        infoNivel.enemigo02 = infoEnemigo02;
 
         return infoNivel;
     }

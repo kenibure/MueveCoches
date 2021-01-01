@@ -37,6 +37,19 @@
 - Lanzada en:
 - Se cambia el fondo de los menús.
 
+## Enemigos
+### Enemigo01
+- Es un cañón
+- Se embucla y va generandose.
+- Cada punto se van generando cada menos tiempo.
+
+### Enemigo02
+- Es una bola que va bajando rebotando.
+- No es parametrizable.
+- Se genera la primera al llegar a 15 puntos. (Esto lo hace el GameController)
+- No está embuclado pero al destruirse se autogenera otra, lo que hace que al generarse una esta se regenere.
+- Cada 10 puntos (25, 35, 45, 55...) se genera una nueva. (Esto lo hace el GameController)
+
 ## Créditos
 - Música y sonidos
     - DL-Sounds (dl-sounds.com)

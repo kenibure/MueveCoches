@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Este enemigo es una bola que va rebotando y arrastra al jugador. No está embuclada pero al destruirse se invoca que se genere una nueva. Está estipulado en GameController que aparezca una nueva cada 10 puntos a partir de 15.
 public class Enemy02GeneratorController : GenericEnemyGeneratorController
 {
 
@@ -21,8 +22,11 @@ public class Enemy02GeneratorController : GenericEnemyGeneratorController
     }
 
     //Este método debe ser público por que este enemigo no se genera en un bucle, si no que es a petición.
-    public void generarEnemigo()
+    public void generarEnemigo(InfoEnemigo02 infoEnemigo02)
     {
-        CreateEnemy();
+        if(infoEnemigo02.debeGenerarse)
+        {
+            CreateEnemy();
+        }
     }
 }

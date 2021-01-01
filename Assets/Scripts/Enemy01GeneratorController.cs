@@ -12,6 +12,8 @@ public class Enemy01GeneratorController : GenericEnemyGeneratorController
 
     private float currentGeneratorTimer; //Time between an Enemy is generated.
 
+    private bool estaEnMarcha;
+
 
     //Son las acciones iniciales que deben hacerse. Esto no se pone directamente en el "Start()", para poder llamarlo desde fuera y asi resetear el elemento.
     public void initEnemyGenerator(InfoEnemigo01 infoEnemigo01)
@@ -28,9 +30,11 @@ public class Enemy01GeneratorController : GenericEnemyGeneratorController
             currentCourse = CurrentCourse.derecha;
             currentGeneratorTimer = startGeneratorTimer;
             generateLoopCreateEnemies(startGeneratorTimer);
+            estaEnMarcha = true;
         }
         else
         {
+            estaEnMarcha = false;
             print("No se activa el Enemigo01");
         }
     }
@@ -41,22 +45,25 @@ public class Enemy01GeneratorController : GenericEnemyGeneratorController
     //Con esto se incrementa la velocidad a la que se generan los enemigos.
     public void incrementGeneratorSpeed()
     {
-        cancelLoopCreateEnemies();
-        generateLoopCreateEnemies(currentGeneratorTimer);
-        if (currentGeneratorTimer > generatorSpeedLimiter)
+        if(estaEnMarcha)
         {
-            currentGeneratorTimer = currentGeneratorTimer - generatorSpeedIncrementorFactor;
-        }
-        else
-        {
-            currentGeneratorTimer = currentGeneratorTimer - (generatorSpeedIncrementorFactor / 50);
-        }
+            cancelLoopCreateEnemies();
+            generateLoopCreateEnemies(currentGeneratorTimer);
+            if (currentGeneratorTimer > generatorSpeedLimiter)
+            {
+                currentGeneratorTimer = currentGeneratorTimer - generatorSpeedIncrementorFactor;
+            }
+            else
+            {
+                currentGeneratorTimer = currentGeneratorTimer - (generatorSpeedIncrementorFactor / 50);
+            }
 
 
-        //Esto hace que haya un 10% de posibilidades de que no cambie el sentido para darle aleatoriedad.
-        if (Random.Range(0, 10) != 1)
-        {
-            cambiarSentidoDelGenerator();
+            //Esto hace que haya un 10% de posibilidades de que no cambie el sentido para darle aleatoriedad.
+            if (Random.Range(0, 10) != 1)
+            {
+                cambiarSentidoDelGenerator();
+            }
         }
     }
 }
