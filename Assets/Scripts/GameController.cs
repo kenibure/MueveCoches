@@ -53,12 +53,15 @@ public class GameController : MonoBehaviour
         incializadoresDePublicidad();
         lanzarBannerPublicidadInicioPartida();
 
-        infoNivel = generarInfoNivel();
+        infoNivel = StaticUtilities.infoNivelSeleccionado;
         asignarCaracteristicasAlNivel(infoNivel);
 
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
-        asignarEstadoAPanelesDeColores(true);
+        if (infoNivel.colocarPanelesDeColores)
+        {
+            asignarEstadoAPanelesDeColores(true);
+        }
         audioSource = GetComponent<AudioSource>();
         if (sonidosActivos())
         {
@@ -180,7 +183,10 @@ public class GameController : MonoBehaviour
         point01Generator.SendMessage("initPointGenerator");
         puntuacion = 0;
         asignarPuntuacionAlLabelNormal();
-        asignarEstadoAPanelesDeColores(true);
+        if (infoNivel.colocarPanelesDeColores)
+        {
+            asignarEstadoAPanelesDeColores(true);
+        }
         playMusicaEnCurso();
         cerrarTodasPublicidades();
 
@@ -463,18 +469,24 @@ public class GameController : MonoBehaviour
     }
 
     //Este método se encarga de asignar las características al nivel. 
-    //TODO: Hacer un TRY CATCH para que si falla aqui devuelva al menú principal.
     private void asignarCaracteristicasAlNivel(InfoNivel infoNivel)
     {
-        velocidadDeJuego = infoNivel.velocidadDeJuego;
+        if (infoNivel == null)
+        {
+            cambiarEscena("EscenaInicial");
+        }
+        else
+        {
+            velocidadDeJuego = infoNivel.velocidadDeJuego;
 
-        enemyGenerator01.SendMessage("initEnemyGenerator", infoNivel.enemigo01);
-        asignarVelocidadJuego(velocidadDeJuego);
+            enemyGenerator01.SendMessage("initEnemyGenerator", infoNivel.enemigo01);
+            asignarVelocidadJuego(velocidadDeJuego);
+        }
 
     }
 
     //Este método es de prueba para ver si se puede generar bien. Posteriormente tendrá que venir de fuera.
-    private InfoNivel generarInfoNivel()
+    /*private InfoNivel generarInfoNivel()
     {
         InfoEnemigo01 infoEnemigo01 = new InfoEnemigo01();
         infoEnemigo01.debeGenerarse = true;
@@ -485,12 +497,11 @@ public class GameController : MonoBehaviour
         InfoEnemigo02 infoEnemigo02 = new InfoEnemigo02();
         infoEnemigo02.debeGenerarse = true;
 
-
         InfoNivel infoNivel = new InfoNivel();
         infoNivel.velocidadDeJuego = 1;
         infoNivel.enemigo01 = infoEnemigo01;
         infoNivel.enemigo02 = infoEnemigo02;
 
         return infoNivel;
-    }
+    }*/
 }

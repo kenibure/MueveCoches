@@ -9,6 +9,7 @@ public class ControladorBotonElegirNivel : MonoBehaviour {
     public Text labelBoton;
     private string escenaDestino = "EscenaInicial"; //Contiene la escena que debe lanzarse al hacer click en el botón. Por defecto siempre será la "EscenaInicial".
     private string valorLabelBoton = "default";
+    private InfoNivel infoNivel = null;
 
     // Start is called before the first frame update
     void Start() {
@@ -31,6 +32,17 @@ public class ControladorBotonElegirNivel : MonoBehaviour {
 
     public void cambiarEscena() {
         print("Cambiando a la escena " + escenaDestino);
+        StaticUtilities.infoNivelSeleccionado = infoNivel;
         SceneManager.LoadScene(escenaDestino);
+    }
+
+    public void setInfoNivel(InfoNivel infoNivel)
+    {
+        this.infoNivel = infoNivel;
+    }
+
+    public InfoNivel getInfoNivel()
+    {
+        return infoNivel;
     }
 }

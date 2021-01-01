@@ -38,7 +38,6 @@ public abstract class GenericEnemyGeneratorController : MonoBehaviour
     {
         GameObject newObject = Instantiate(enemyPrefab, transform.position, Quaternion.identity) as GameObject;
         newObject.SendMessage("ownSetGameControllerValue", gameController);
-        print("Generando enemigo");
     }
 
     //Realiza el movimiento horizontal

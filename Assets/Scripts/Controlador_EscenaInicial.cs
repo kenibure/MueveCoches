@@ -13,6 +13,7 @@ public class Controlador_EscenaInicial : MonoBehaviour {
     }
     public void cambiarEscena(string escenaDestino) {
         print("Cambiando a la escena " + escenaDestino);
+        StaticUtilities.asignarNivel(ListadoNiveles.nivel01());
         eliminarAnuncio();
         SceneManager.LoadScene(escenaDestino);
     }
