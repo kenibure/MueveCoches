@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy02GeneratorController : GenericEnemyGeneratorController {
+public class Enemy02GeneratorController : GenericEnemyGeneratorController
+{
 
     // Start is called before the first frame update
-    void Start() {
-        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    void Start()
+    {
         initEnemyGenerator();
     }
 
     //Son las acciones iniciales que deben hacerse. Esto no se pone directamente en el "Start()", para poder llamarlo desde fuera y asi resetear el elemento.
-    public void initEnemyGenerator() {
+    public void initEnemyGenerator()
+    {
         CancelInvoke("CreateEnemy");
         changePosition(initialPosition);
 
@@ -19,7 +21,8 @@ public class Enemy02GeneratorController : GenericEnemyGeneratorController {
     }
 
     //Este método debe ser público por que este enemigo no se genera en un bucle, si no que es a petición.
-    public void generarEnemigo() {
+    public void generarEnemigo()
+    {
         CreateEnemy();
     }
 }

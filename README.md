@@ -16,6 +16,11 @@
 - Añadir distintos niveles.
 - En la escena "EscenaElegirNive01", crear un listado de niveles que se genere mediante código en tiempo de ejecución.
 - Añadir una opción el menú de fin de juego para volver al menú principal.
+- Modo aventura en el que los niveles van pasando solos al llegar a X puntuación. Luego modo por niveles en el que se elige un nivel y es solo ese.
+- Los niveles se desbloquean al:
+  1- Completarlos en modo aventura
+  2- Completar el anterior en modo nivel suelto + ver publicidad
+- En el modo aventura el objetivo es llegar a X puntos. Al pasar de nivel hay penalización por puntos no cogidos.
 
 ## Versiones
 ### 0.1.1
