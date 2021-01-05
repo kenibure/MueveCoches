@@ -9,6 +9,11 @@ public class Controlador_EscenaInicial : MonoBehaviour {
     BannerView bannerView;
 
     public void Start() {
+        if(!StaticUtilities.firebaseLazado)
+        {
+            lanzarFirebase();
+            StaticUtilities.firebaseLazado = true;
+        }
         lanzarBanner();
     }
     public void cambiarEscena(string escenaDestino) {
@@ -46,6 +51,28 @@ public class Controlador_EscenaInicial : MonoBehaviour {
 
     private void eliminarAnuncio() {
         bannerView.Destroy();
+    }
+
+    //Este método debe lanzarse una única vez.
+    private void lanzarFirebase()
+    {
+        print("Lanzando Firebase");
+        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
+            var dependencyStatus = task.Result;
+            if (dependencyStatus == Firebase.DependencyStatus.Available)
+            {
+                StaticUtilities.firebaseApp = Firebase.FirebaseApp.DefaultInstance;
+            }
+            else
+            {
+                UnityEngine.Debug.LogError(System.String.Format(
+                  "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                // Firebase Unity SDK is not safe to use here.
+
+                print("Error en lanzamiento de Firebase");
+            }
+        });
+        print("Firebase lanzado");
     }
 
 }

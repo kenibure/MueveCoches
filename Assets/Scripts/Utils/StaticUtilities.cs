@@ -6,6 +6,10 @@ public class StaticUtilities
 {
     public static InfoNivel infoNivelSeleccionado { get; set; }
 
+    public static bool firebaseLazado { get; set; } = false;
+
+    public static Firebase.FirebaseApp firebaseApp { get; set; }
+
     public static void asignarNivel(InfoNivel infoNivel)
     {
         infoNivelSeleccionado = infoNivel;
