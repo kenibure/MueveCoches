@@ -1,5 +1,6 @@
 ﻿using Firebase.Database;
 using UnityEngine;
+using System;
 
 //Esta clase es necesaria para poder enviar parámetros de una Escena a otra ya que no hay manera de hacerlo. Se utilizan estas variables estáticas para ese fin.
 public class StaticUtilities
@@ -17,10 +18,10 @@ public class StaticUtilities
         infoNivelSeleccionado = infoNivel;
     }
 
-    //Este método debe lanzarse una única vez.
+    //Este método debe lanzarse una única vez. ¡¡OJO!! Es un método pensado para trabajar de forma asíncrona. Si se quiere forzar a que se espere habría que lanzar SOLO la linea del final que está comentada.
     public static void lanzarFirebase()
     {
-        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
+        /*Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             var dependencyStatus = task.Result;
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
@@ -36,6 +37,11 @@ public class StaticUtilities
                 firebaseLazado = false;
             }
         });
+        */
+
+
+        firebaseApp = Firebase.FirebaseApp.DefaultInstance;
+        firebaseLazado = true;
     }
 
     //En caso de que Firebase esté lanzado y por tanto se pueda enviar el dato devolverá "TRUE", en caso contrario devolverá "FALSE". Si devuelve FALSE significa que no  se ha enviado.

@@ -13,7 +13,7 @@ public class Controlador_EscenaInicial : MonoBehaviour {
         if(StaticUtilities.esPrimeraVez)
         {
             StaticUtilities.lanzarFirebase();
-            //StaticUtilities.ejemploDeEnvioDeDatosAFirebase();
+            StaticUtilities.ejemploDeEnvioDeDatosAFirebase();
             StaticUtilities.esPrimeraVez = false;
         }
         lanzarBanner();
