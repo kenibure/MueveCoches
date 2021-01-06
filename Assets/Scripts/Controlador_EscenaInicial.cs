@@ -1,18 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using GoogleMobileAds.Api;
+using System;
 
 public class Controlador_EscenaInicial : MonoBehaviour {
 
     BannerView bannerView;
 
     public void Start() {
-        if(!StaticUtilities.firebaseLazado)
+
+        //Por aqui solo entrará la primera vez que se invoque la Escena Inicial.
+        if(StaticUtilities.esPrimeraVez)
         {
-            lanzarFirebase();
-            StaticUtilities.firebaseLazado = true;
+            StaticUtilities.lanzarFirebase();
+            //StaticUtilities.ejemploDeEnvioDeDatosAFirebase();
+            StaticUtilities.esPrimeraVez = false;
         }
         lanzarBanner();
     }
@@ -53,26 +55,5 @@ public class Controlador_EscenaInicial : MonoBehaviour {
         bannerView.Destroy();
     }
 
-    //Este método debe lanzarse una única vez.
-    private void lanzarFirebase()
-    {
-        print("Lanzando Firebase");
-        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
-            var dependencyStatus = task.Result;
-            if (dependencyStatus == Firebase.DependencyStatus.Available)
-            {
-                StaticUtilities.firebaseApp = Firebase.FirebaseApp.DefaultInstance;
-            }
-            else
-            {
-                UnityEngine.Debug.LogError(System.String.Format(
-                  "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-                // Firebase Unity SDK is not safe to use here.
-
-                print("Error en lanzamiento de Firebase");
-            }
-        });
-        print("Firebase lanzado");
-    }
 
 }
