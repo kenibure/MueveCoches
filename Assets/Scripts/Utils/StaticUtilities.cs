@@ -45,6 +45,8 @@ public class StaticUtilities
     }
 
     //En caso de que Firebase esté lanzado y por tanto se pueda enviar el dato devolverá "TRUE", en caso contrario devolverá "FALSE". Si devuelve FALSE significa que no  se ha enviado.
+    //https://console.firebase.google.com/u/0/project/runner-fausto/database/runner-fausto-default-rtdb/data
+    //https://firebase.google.com/docs/database/unity/save-data?authuser=0
     public static bool enviarDatoAFireBase(string json, string nombreTabla, string id)
     {
         //Hay que verificar que Firebase se haya lanzado.
